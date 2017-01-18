@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AngularJs Training</title>
+    </head>
+    <body ng-app="first-app">
+        <h1 ng-controller = "messageCtrl">{{hellomessage}}</h1>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script type="text/javascript">
+            var app = angular.module('first-app',[]);
+            app.controller('messageCtrl',function($scope){
+                $scope.hellomessage = "Hello Word";
+            })
+        </script>
+    </body>
+</html>

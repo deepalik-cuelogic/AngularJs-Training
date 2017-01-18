@@ -1,0 +1,11 @@
+.custom-thumbnails-ul{
+    list-style: none;
+}
+.voting-widget{
+    width: 5%;
+    float: left; 
+}
+.course-widget{
+    float: right;
+    width: 94%;
+}

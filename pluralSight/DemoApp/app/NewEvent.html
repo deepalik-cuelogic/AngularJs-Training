@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" ng-app="eventapp">
+    <head>
+        <meta charset="utf-8">
+        <title>Event Registration</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/app.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="NewEvent.html">Create Event</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-controller="EditEventController">
+                <div class="container">
+                    <h1>New Event</h1>
+                    <hr>
+                    <form name="newEventForm">
+                        <fieldset>
+                          <div class="form-group">
+                            <label for="eventName">Event Name :</label>
+                            <input id="eventName" type="text" class="form-control"  required ng-model="event.name" placeholder="Name of your Event...">
+                          </div>
+                          <div class="form-group">
+                            <label for="eventDate">Event Date :</label>
+                            <input id="eventDate" type="text" class="form-control" required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yy)">
+                          </div>
+                          <div class="form-group">
+                            <label for="eventTime">Event Time :</label>
+                            <input id="eventTime" type="text" class="form-control" ng-model="event.time" placeholder="Start and end time">
+                          </div>
+                          <div class="form-group">
+                            <label for="eventLocation">Event Location :</label>
+                            <input id="eventLocation" type="text" class="form-control" ng-model="event.location.street" placeholder="Address of event..">
+                          </div>
+                          <div class="form-group">
+                            <input id="eventCity" type="text"  class="form-control" ng-model="event.location.city" placeholder="City"><br>
+                            <input id="eventProvince" type="text" class="form-control" ng-model="event.location.province" placeholder="Province">
+                          </div>
+                          <div class="form-group"> 
+                            <label for="eventImageURL">Image:</label>
+                            <input id="eventImageURL" type="url" class="form-control" ng-model="event.imgURL" placeholder="URL of the image">
+                          </div> 
+                        </fieldset>
+                        <img ng-src="{{event.imgURL}}">
+                        <br>
+                        <br>
+                        
+                        <button type="button" ng-disabled="newEventForm.$invalid" class="btn btn-primary" ng-click="saveEvent(event , newEventForm)">Save</button>
+                        <button type="button" class="btn btn-default">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+      <!--Scripts start-->
+        <script src="lib/jquery-3.1.1.min.js"></script>
+        <script src="lib/underscore-min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/controller/Event-controller.js"></script>
+        <script src="js/controller/Edit-Event-controller.js"></script>
+      <!--Scripts end-->
+    </body>
+</html>
