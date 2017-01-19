@@ -7,21 +7,30 @@ eventApp.controller('EventController' ,
     $scope.headerColor ={color:'red'};
     $scope.snippet ='<span style="color:red">Hi There</span>';
     $scope.booleValue = true;
-    eventData.getEvent(event).then(function(response) {
-    var data = response.data,
-        status = response.status,
-        header = response.header,
-        config = response.config;
-    // success handler
-        $scope.event =  data;
-}, function(response) {
-    var data = response.data,
-        status = response.status,
-        header = response.header,
-        config = response.config;
-    // error handler
-        $log.warn(data, status, headers(), config);
-});
+    
+    //with use of $resource service
+    
+     eventData.getEvent()
+        .$promise
+         .then(function(event){$scope.event = event ; console.log(event);})
+         .catch(function(response){console.log(response);});
+    
+         
+//    eventData.getEvent(event).then(function(response) {
+//    var data = response.data,
+//        status = response.status,
+//        header = response.header,
+//        config = response.config;
+//    // success handler
+//        $scope.event =  data;
+//}, function(response) {
+//    var data = response.data,
+//        status = response.status,
+//        header = response.header,
+//        config = response.config;
+//    // error handler
+//        $log.warn(data, status, headers(), config);
+//});
 //                    .then(function(event){$scope.event =  event})
 //                    .error(function(data, status, headers, config){
 //                            $log.warn(data, status, headers(), config);

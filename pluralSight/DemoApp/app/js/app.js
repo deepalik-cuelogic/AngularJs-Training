@@ -1,3 +1,3 @@
 'use strict';
 
-var eventApp = angular.module('eventapp',['ngSanitize']);
+var eventApp = angular.module('eventapp',['ngSanitize','ngResource']);
