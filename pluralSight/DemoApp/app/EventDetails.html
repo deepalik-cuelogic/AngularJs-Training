@@ -30,8 +30,8 @@
                 </div> 
                 <div class="row">
                     <address>
-                        <div><strong>Room No :</strong> {{event.location.roomNo}}</div>
-                        <div><strong>Treet :</strong> {{event.location.street}}</div>
+                        <div><strong>Address :</strong> {{event.location.address}}</div>
+                        <div><strong>City :</strong> {{event.location.city}}</div>
                     </address>
                 </div>
                 <div>{{3 | number:2}}</div>
@@ -82,9 +82,15 @@
         <script src="lib/underscore-min.js"></script>
         <script src="lib/bootstrap.min.js"></script>
         <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-sanitize.min.js"></script>
         <script src="js/app.js"></script>
         <script src="js/filters.js"></script>
+        <script src="js/Services/Event-Data.js"></script>
+        <script src="js/controller/Edit-Event-controller.js"></script>
         <script src="js/controller/Event-controller.js"></script>
+
+
+
         <!--Scripts end-->
     </body>
 </html>
