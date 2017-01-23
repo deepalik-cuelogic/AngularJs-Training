@@ -1,0 +1,21 @@
+<style>
+    div.spicy{
+        margin: auto;
+        width: 600px;
+    }
+    div.spicy div {
+      padding: 10px;
+      border: solid 2px blue;
+    }
+</style>
+<div class="spicy">
+    <div ng-controller="mainDivController">
+        <p> Good {{timeOfTheDay}} {{name}}</p>
+        <div ng-controller="subDivController">
+             <p> Good {{timeOfTheDay}} {{name}}</p>
+            <div ng-controller="childDivController">
+                <p> Good {{timeOfTheDay}} {{name}}</p>
+            </div>
+        </div>
+    </div>
+</div>

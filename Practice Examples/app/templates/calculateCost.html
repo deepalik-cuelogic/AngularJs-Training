@@ -1,0 +1,42 @@
+<style>
+    .invoice-form{
+        border: 1px solid #ddd;
+        padding: 10px;
+        width: 600px;
+        margin-left: auto;
+        margin-top: 5%;
+        margin-right: auto;
+    }
+</style>
+<form class="invoice-form clearfix">
+  <div class="row">
+    <div class="text-center"><h2>Invoice </h2></div>
+    <div class="form-group col-md-12">
+        <label for="quantity" class="col-md-3">Quantity : </label>
+        <div class="col-md-9">
+            <input type="number" class="form-control" min="0" ng-model="qnty">
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="quantity" class="col-md-3">Cost : </label>
+        <div class="col-md-9">
+            <input type="number" class="col-md-6 form-control" min="0" ng-model="cost">
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label for="quantity" class="col-md-3">Currency : </label>
+        <div class="col-md-3">
+            <select ng-model="inCurr">
+                <option ng-repeat="curr in currency">{{curr}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label class="col-md-3">Total :</label>
+        <span class="col-md-3" ng-repeat="curr in currency"> {{ total(curr) | currency : curr}} </span>
+    </div>
+    <div class="col-md-12 text-center">
+        <input type="button" class="btn btn-primary btn-lg" value="Pay" ng-click="pay();">
+    </div>
+    </div>
+</form>

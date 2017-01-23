@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="invoiceApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Invoice</title>
+        <link rel="stylesheet" href="app/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="app/css/app.css"/>
+        <base href="/">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">AngularJs</a>
+            </div>
+            <div class="container-fluid">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="invoice">Invoice <span class="sr-only">(current)</span></a></li>
+                    <li><a href="scopeInheritance">Scope Inheritance</a></li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+        </nav>
+        <div ng-view></div>
+<!--Scripts start-->
+        <script src="app/lib/jquery-3.1.1.min.js"></script>
+        <script src="app/lib/bootstrap.min.js"></script>
+        <script src="app/lib/angular/angular.js"></script>
+        <script src="app/lib/angular/angular-route.min.js"></script>
+        <script src="app/js/app.js"></script>
+        <script src="app/js/Services/invoice-service.js"></script>
+        <script src="app/js/controller/invoice-controller.js"></script>
+        <script src="app/js/controller/scopeInheritance-controller.js"></script>
+<!--Scripts end-->
+    </body>
+</html>
