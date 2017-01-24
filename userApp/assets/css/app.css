@@ -1,0 +1,16 @@
+/*Login page CSS*/
+.forgot-password{
+    float:right; 
+    font-size: 80%; 
+    position: relative; 
+    top:-10px;
+}
+#loginbox{
+    margin-top:50px;
+}
+#loginbox .panel-body{
+    padding-top:30px
+}
+.login-input-field{
+    margin-bottom: 25px
+}

@@ -1,0 +1,73 @@
+[{           "fname": "Deepali",
+            "lname": "Kakade",
+            "id": 1,
+            "email": "dkakade1@gmail.com",
+            "username" :"deepalik",
+            "password": "deepali123",
+            "courses": [
+                {
+					"id": 1,
+                    "name": "Fundamentals of AngularJs",
+                    "creatorName": "Bob Smith",
+                    "duration": 1,
+                    "level": "Advanced",
+                    "abstract": "In this session you will learn the fundamental concepts of angularjs!",
+                    "upvoteCount": 0
+                },
+                {
+					"id": 2,
+                    "name": "GIT Fundamentals",
+                    "creatorName": "John Doe",
+                    "duration": 3,
+                    "level": "Introductory",
+                    "abstract": "This session will take a closer look at scopes.  Learn what they do, how they do it, and how to get them to do it for you.",
+                    "upvoteCount": 3
+                },
+                {
+					"id": 3,
+                    "name": "Introduction to MangoDB",
+                    "creatorName": "Jane Doe",
+                    "duration": 2,
+                    "level": "Intermediate",
+                    "abstract": "Controllers are the beginning of everything Angular does.  Learn how to craft controllers that will win the respect of your friends and neighbors.",
+                    "upvoteCount": 0
+                }
+            ]
+},
+{           "fname": "Geet",
+            "lname": "Khabale",
+            "id": 2,
+            "email": "geetk@gmail.com",
+            "username" :"geetk",
+            "password": "geet123",
+            "courses": [
+                {
+					"id": 1,
+                    "name": "Fundamentals of AngularJs",
+                    "creatorName": "Bob Smith",
+                    "duration": 1,
+                    "level": "Advanced",
+                    "abstract": "In this session you will learn the fundamental concepts of angularjs!",
+                    "upvoteCount": 0
+                },
+                {
+					"id": 2,
+                    "name": "GIT Fundamentals",
+                    "creatorName": "John Doe",
+                    "duration": 3,
+                    "level": "Introductory",
+                    "abstract": "This session will take a closer look at scopes.  Learn what they do, how they do it, and how to get them to do it for you.",
+                    "upvoteCount": 3
+                },
+                {
+					"id": 3,
+                    "name": "Introduction to MangoDB",
+                    "creatorName": "Jane Doe",
+                    "duration": 2,
+                    "level": "Intermediate",
+                    "abstract": "Controllers are the beginning of everything Angular does.  Learn how to craft controllers that will win the respect of your friends and neighbors.",
+                    "upvoteCount": 0
+                }
+            ]
+        }
+ ]
