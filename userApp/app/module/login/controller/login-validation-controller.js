@@ -17,11 +17,16 @@
            debugger;
            console.log($scope.usersData);
                //if($scope.username && $scope.password){
+            var filteredArray = $scope.usersData.filter(function( obj ) {
+            return obj.username === currentUsername && obj.password === currentPassword;
+          });
+          console.log(filteredArray);
         for(var x in $scope.usersData){
                 if (currentUsername == $scope.usersData[x].username && currentPassword == $scope.usersData[x].password) {
                          //window.location.href = '/index.html';
                          //break;
-                    $state.go('dashboard');
+                    $state.go('dashboard', {userDataObj: filteredArray});
+                    //$location.path('dashboard');
                     break;
                  }
                  else {
@@ -31,6 +36,8 @@
                      else;
                  }
             }
+
+          
       //}
         }, function(response) {
         var data = response.data,

@@ -9,28 +9,37 @@
 					"id": 1,
                     "name": "Fundamentals of AngularJs",
                     "creatorName": "Bob Smith",
+                    "creatorPhoto":"/assets/img/auth1.jpg",
                     "duration": 1,
                     "level": "Advanced",
-                    "abstract": "In this session you will learn the fundamental concepts of angularjs!",
-                    "upvoteCount": 0
+                    "abstract": "In this session you will learn the fundamental concepts of angularjs!Learn what they do, how they do it",
+                    "upvoteCount": 110,
+                    "price":"$150",
+                    "courseImg" :"/assets/img/angularjs.jpg"
                 },
                 {
 					"id": 2,
                     "name": "GIT Fundamentals",
                     "creatorName": "John Doe",
+                    "creatorPhoto":"/assets/img/auth2.jpg",
                     "duration": 3,
                     "level": "Introductory",
                     "abstract": "This session will take a closer look at scopes.  Learn what they do, how they do it, and how to get them to do it for you.",
-                    "upvoteCount": 3
+                    "upvoteCount": 30,
+                    "price":"$200",
+                    "courseImg" :"/assets/img/github.jpg"
                 },
                 {
 					"id": 3,
                     "name": "Introduction to MangoDB",
-                    "creatorName": "Jane Doe",
+                    "creatorName": "Jane Smith",
+                    "creatorPhoto":"/assets/img/auth3.jpg",
                     "duration": 2,
                     "level": "Intermediate",
                     "abstract": "Controllers are the beginning of everything Angular does.  Learn how to craft controllers that will win the respect of your friends and neighbors.",
-                    "upvoteCount": 0
+                    "upvoteCount": 90,
+                    "price":"$250",
+                    "courseImg" :"/assets/img/mangodb.png"
                 }
             ]
 },
@@ -41,32 +50,42 @@
             "username" :"geetk",
             "password": "geet123",
             "courses": [
+                
                 {
-					"id": 1,
-                    "name": "Fundamentals of AngularJs",
-                    "creatorName": "Bob Smith",
-                    "duration": 1,
-                    "level": "Advanced",
-                    "abstract": "In this session you will learn the fundamental concepts of angularjs!",
-                    "upvoteCount": 0
-                },
-                {
-					"id": 2,
+                    "id": 1,
                     "name": "GIT Fundamentals",
                     "creatorName": "John Doe",
+                    "creatorPhoto":"/assets/img/auth2.jpg",
                     "duration": 3,
                     "level": "Introductory",
                     "abstract": "This session will take a closer look at scopes.  Learn what they do, how they do it, and how to get them to do it for you.",
-                    "upvoteCount": 3
+                    "upvoteCount": 30,
+                    "price":"$200",
+                    "courseImg" :"/assets/img/github.jpg"
                 },
                 {
-					"id": 3,
+                    "id": 2,
+                    "name": "Fundamentals of AngularJs",
+                    "creatorName": "Bob Smith",
+                    "creatorPhoto":"/assets/img/auth1.jpg",
+                    "duration": 1,
+                    "level": "Advanced",
+                    "abstract": "In this session you will learn the fundamental concepts of angularjs!Learn what they do, how they do it",
+                    "upvoteCount": 110,
+                    "price":"$150",
+                    "courseImg" :"/assets/img/angularjs.jpg"
+                },
+                {
+                    "id": 3,
                     "name": "Introduction to MangoDB",
-                    "creatorName": "Jane Doe",
+                    "creatorName": "Jane Smith",
+                    "creatorPhoto":"/assets/img/auth3.jpg",
                     "duration": 2,
                     "level": "Intermediate",
                     "abstract": "Controllers are the beginning of everything Angular does.  Learn how to craft controllers that will win the respect of your friends and neighbors.",
-                    "upvoteCount": 0
+                    "upvoteCount": 90,
+                    "price":"$250",
+                    "courseImg" :"/assets/img/mangodb.png"
                 }
             ]
         }
