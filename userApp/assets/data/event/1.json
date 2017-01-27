@@ -40,6 +40,30 @@
                     "upvoteCount": 90,
                     "price":"$250",
                     "courseImg" :"/assets/img/mangodb.png"
+                },
+                {
+                    "id": 4,
+                    "name": "Bootstrap",
+                    "creatorName": "John Doe",
+                    "creatorPhoto":"/assets/img/auth2.jpg",
+                    "duration": 3,
+                    "level": "Introductory",
+                    "abstract": "This session will take a closer look at responsive framework.Learn how it works and what it do.and how to get them to do it for you",
+                    "upvoteCount": 30,
+                    "price":"$200",
+                    "courseImg" :"/assets/img/bootstrap.jpg"
+                },
+                {
+                    "id": 5,
+                    "name": "Introduction ASP.Net",
+                    "creatorName": "Jane Smith",
+                    "creatorPhoto":"/assets/img/auth3.jpg",
+                    "duration": 2,
+                    "level": "Intermediate",
+                    "abstract": "Controllers are the beginning of everything Angular does.  Learn how to craft controllers that will win the respect of your friends and neighbors.",
+                    "upvoteCount": 90,
+                    "price":"$250",
+                    "courseImg" :"/assets/img/asp.jpg"
                 }
             ]
 },

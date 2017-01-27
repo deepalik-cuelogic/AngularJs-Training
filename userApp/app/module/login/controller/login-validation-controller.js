@@ -15,12 +15,12 @@
      // success handler
            $scope.usersData =  data;
            debugger;
-           console.log($scope.usersData);
+           //console.log($scope.usersData);
                //if($scope.username && $scope.password){
             var filteredArray = $scope.usersData.filter(function( obj ) {
             return obj.username === currentUsername && obj.password === currentPassword;
           });
-          console.log(filteredArray);
+          //console.log(filteredArray);
         for(var x in $scope.usersData){
                 if (currentUsername == $scope.usersData[x].username && currentPassword == $scope.usersData[x].password) {
                          //window.location.href = '/index.html';
