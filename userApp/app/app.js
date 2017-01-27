@@ -19,3 +19,5 @@ var webCourseApp = angular.module('webCourseApp',['ui.router'])
         $urlRouterProvider.otherwise('/login');
          $locationProvider.html5Mode(true);
 }]);
+
+
