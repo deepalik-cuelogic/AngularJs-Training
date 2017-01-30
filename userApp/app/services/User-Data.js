@@ -5,5 +5,4 @@ webCourseApp.factory('userData' , function($http){
             return $http.get('/assets/data/event/1.json');
         }
     }
-    console.log(getUserData());
 })

@@ -14,7 +14,6 @@
            config = response.config;
      // success handler
            $scope.usersData =  data;
-           debugger;
            //console.log($scope.usersData);
                //if($scope.username && $scope.password){
             var filteredArray = $scope.usersData.filter(function( obj ) {
