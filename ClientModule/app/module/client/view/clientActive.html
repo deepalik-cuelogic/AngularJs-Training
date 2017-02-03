@@ -1,0 +1,21 @@
+<div class="tab-pane fade in active" id="activeTab">
+			  				<table class="table custom-table">
+			  					<thead>
+			  						<th class="width-5"></th>
+			  						<th>Client Name</th>
+			  						<th>Email</th>
+			  						<th>Contact</th>
+			  						<th>Actions</th>
+			  					</thead>
+			  					<tbody>
+			  						<tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize | limitTo:pageSize">
+			  							<td><input type="checkbox" name="clientCheck"></td>
+			  							<td class="custom-ellipsis"><a href="#">{{activedata.ClientName}}</a></td>
+			  							<td class="custom-ellipsis"><a href="#">{{activedata.Contacts[0].EmailAddress}}</a></td>
+			  							<td><a href="#">Edit Contact</a></td>
+			  							<td><a href="#">Edit</a> &nbsp;/&nbsp; <a href="#">View</a> &nbsp;/&nbsp; <a href="#">Archive</a></td>
+			  						</tr>
+			  					</tbody>
+							</table>
+							<pagination page="currentPage" max-size="noOfPages" total-items="totalData" items-per-page="pageSize"></pagination>
+			  			</div>

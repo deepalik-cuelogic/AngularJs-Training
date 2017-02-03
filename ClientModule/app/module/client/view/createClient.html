@@ -1,0 +1,203 @@
+<div class="create-client">
+        	<ol class="breadcrumb custom-breadcrumb">
+			  <li><a href="#">Home</a></li>
+			  <li><a href="#">Clients</a></li>
+			  <li><a href="#">Create</a></li>
+			</ol>
+        	<div class="panel panel-default">
+				  <div class="panel-body">
+
+				    <ul class="nav nav-tabs"> 
+				    	<li class="active"><a href="#infoTab" data-toggle="tab">Info</a></li> 
+				    	<li><a href="#contactsTab" data-toggle="tab">Contacts</a></li>
+				    </ul>
+				    <div class="tab-content clearfix">
+			  			<div class="tab-pane fade in active" id="infoTab">
+			  			  <form class="custom-form" novalidate>
+			  			    <div class="row">
+			  			     	<div class="col-sm-6">
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4 required-field" for="companyName">Company Name</label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="clientName" required>
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4 required-field" for="countryName">Country</label>
+								    <div class="col-sm-8">
+								      <select class="form-control" ng-model="countryName">
+										    <option value="1">USA</option>
+										    <option value="2">India</option>
+										    <option value="3">UK</option>
+										    <option value="4">UAE</option>
+									  </select>
+									 </div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4" for="companyName">Company Logo</label>
+								    <div class="col-sm-8">
+								    	<input type="button" class="btn btn-success" id="uploadLogo" value="upload"><br>
+								    	<img class="company-logo" src="assets/img/Honda-logo.png">
+								    </div>
+								  </div>
+							 	</div>
+							 
+							 <div class="col-sm-6">
+							 		<label class="col-sm-4" for="companyName">Addresses</label>
+								    <div class="col-sm-8">
+								    	<input type="button" class="btn btn-success" id="addAddress" value="Add" data-toggle="modal" data-target="#addAddressModal"><br>
+								    </div>
+								    <div id="addedAddress" class="addedAddress scrollbar">
+								     
+								    </div>
+							 </div>
+							 </div>
+							 <div class="bottom-buttons col-sm-12">
+							 	<input type="button" class="btn btn-default" name="cancelButton" value="Cancel">
+							 	<input type="submit" class="btn btn-success" name="saveButton" ng-click="postData()" value="Save">
+							 </div>
+							</form>
+
+			  			</div>
+			  			<div class="tab-pane fade" id="contactsTab">
+			  			  <form class="custom-form">
+			  			    <div class="row">
+			  			     <div class="col-sm-6">
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4 required-field" for="firstName">First Name</label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" id="firstName">
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4 required-field" for="lastName">Last Name</label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" id="lastName">
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4 required-field" for="email">Email</label>
+								   	<div class="col-sm-8">
+								    	<input type="email" class="form-control" id="email">
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4" for="contactNo">Contact Number</label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" id="contactNo">
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4" for="designation">Designation</label>
+								    <div class="col-sm-8">
+								      <select class="form-control" id="designation">
+										    <option>Technical</option>
+										    <option>Report Delivery</option>
+										    <option>Financial</option>
+										    <option>Other</option>
+									  </select>
+									 </div>
+								  </div>
+								  <div class="form-group col-sm-12">
+								    <label class="col-sm-4" for="contactNo">Primary Contact Person</label>
+								   	<div class="col-sm-8">
+								    	<input type="checkbox" id="contactcheck"><br>
+								    	<input type="button" class="btn btn-success" name="addContacts" value="Add Contact">
+								   	</div>
+								  </div>
+								  <div>
+								  </div>
+							 </div>
+							 <div class="col-sm-6">
+							 		<div id="addedContacts" class="scrollbar">
+								     
+								    </div>
+							 </div>
+							</div>
+							 <div class="bottom-buttons col-sm-12">
+							 	<input type="button" class="btn btn-default" name="cancelButton" value="Cancel">
+							 	<input type="submit" class="btn btn-success" name="saveButton" value="Save">
+							 </div>
+							</form>
+			  			</div>
+			  		</div>
+				  </div>
+			</div>
+         </div>
+
+
+ <!-- Modal to add address -->
+    <div id="addAddressModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                     <form class="custom-form" novalidate>
+			  			    <div class="row">
+								  <div class="col-sm-6 form-group">
+								    <label class="col-sm-4" for="street1">Street1 </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="address.street1">
+								   	</div>
+								</div>
+								  <div class="col-sm-6 form-group">
+								    <label class="col-sm-4" for="street2">Street2 </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="address.street2">
+								   	</div>
+								  </div>
+							</div>
+							<div class="row">
+								  <div class="form-group col-sm-6">
+								    <label class="col-sm-4" for="city">City </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="address.city">
+								   	</div>
+								  </div>
+								  <div class="form-group col-sm-6">
+								    <label class="col-sm-4" for="state">State </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="address.state">
+								   	</div>
+								  </div>
+							</div>
+							<div class="row">
+								  <div class="form-group col-sm-6">
+								    <label class="col-sm-4" for="country">Country </label>
+								   	<div class="col-sm-8">
+								    	<select class="form-control" ng-model="address.country">
+										    <option value="1">USA</option>
+										    <option value="2">India</option>
+										    <option value="3">UK</option>
+										    <option value="4">UAE</option>
+									   </select>
+								   	</div>
+								  </div>
+								  <div class="col-sm-6 form-group">
+								    <label class="col-sm-4" for="zipcode">Zip </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="address.zip">
+								   	</div>
+								  </div>
+							</div>
+							<div class="row">
+			  			     	<div class="col-sm-6">
+								  <div class="form-group">
+								    <label class="col-sm-4" for="phoneNumber">Phone Number </label>
+								   	<div class="col-sm-8">
+								    	<input type="text" class="form-control" ng-model="phoneNumber">
+								   	</div>
+								  </div>
+								</div>
+						    </div>
+						</form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addAddress()" add-address>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,22 @@
+<div class="client-data">
+        	<ol class="breadcrumb custom-breadcrumb">
+			  <li><a href="#">Home</a></li>
+			  <li><a href="#">Clients</a></li>
+			</ol>
+        	<div class="panel panel-default">
+				  <div class="panel-body">
+
+				    <ul class="nav nav-tabs"> 
+				       <li ui-sref-active="active" class="active"><a ui-sref="clients.active" data-toggle="tab">Active</a></li> 
+				       <li ui-sref-active="active" class="active"><a ui-sref="clients.archive" data-toggle="tab">Archived</a></li> 
+				    	<input ui-sref="createClient" type="button" class="btn btn-success float-right" value="Create Client" />
+				    </ul>
+				    <div class="tab-content clearfix">
+			  			<!--Content loads here-->
+			         	 <div ui-view></div>
+			         	<!--Content load here-->
+			  			
+			  		</div>
+				  </div>
+			</div>
+         </div>

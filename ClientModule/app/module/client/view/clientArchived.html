@@ -1,0 +1,20 @@
+<div class="tab-pane fade in" id="archivedTab">
+			  				<table class="table custom-table">
+			  					<thead>
+			  						<th  class="width-5"></th>
+			  						<th>Client Name</th>
+			  						<th>Email</th>
+			  						<th>Contact</th>
+			  						<th>Actions</th>
+			  					</thead>
+			  					<tbody>
+			  						<tr ng-repeat="archivedata in dataArray">
+			  							<td><input type="checkbox" name="clientCheck"></td>
+			  							<td><a href="#">{{archivedata.ClientName}}</a></td>
+			  							<td><a href="#">{{archivedata.Contacts[0].EmailAddress}}</a></td>
+			  							<td><a href="#">Edit Contact</a></td>
+			  							<td><a href="#">View</a> &nbsp;/&nbsp; <a href="#">Restore</a></td>
+			  						</tr>
+			  					</tbody>
+							</table>
+			  			</div>
