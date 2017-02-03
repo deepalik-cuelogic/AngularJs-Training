@@ -44,6 +44,7 @@ var clientsApp = angular.module('clientsApp',['ui.router' ,'ui.bootstrap'])
             .state('createClient', {
                 url: '/createClient',
                 templateUrl: 'app/module/client/view/createClient.html',
+                params: {userDataObj: null},
                 controller: 'createClientController'
             })
 

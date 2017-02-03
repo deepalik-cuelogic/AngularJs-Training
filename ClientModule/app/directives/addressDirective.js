@@ -16,7 +16,7 @@ clientsApp.directive('addAddress', function($compile){
                     '</address>' +
                     '<span class="address-icons">' +
                       '<a href="#" title="remove" ng-click="removeAddress($index)"><i class="fa fa-times" aria-hidden="true"></i></a>' +
-                      '<a href="#" title="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>' +
+                      '<a href="#" title="edit" ng-click="editAddress($index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>' +
                     '</span>'+
                    '</div>';
       compiledElement = $compile(html)(scope);

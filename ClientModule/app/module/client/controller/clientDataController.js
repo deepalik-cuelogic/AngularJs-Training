@@ -9,7 +9,11 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
      		Action: $scope.currentActiveTab
      	});
 
-
+        //edit client data method
+        $scope.editClientData = function(clientIndex){
+           //var current =$scope.dataArray[clientIndex];
+           $state.go('createClient', {userDataObj: $scope.dataArray[clientIndex]});
+        }
 		// pagination controls
 			$scope.currentPage = 1;
 			$scope.totalData = $scope.dataArray.length;
@@ -17,4 +21,5 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
 			$scope.noOfPages = Math.ceil($scope.totalData / $scope.pageSize);
 
 		  }
+
    ]);

@@ -1,5 +1,6 @@
-clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataService',
-     function createClientController($scope , clientPostDataService){
+clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataService','$stateParams','$state',
+     function createClientController($scope , clientPostDataService , $stateParams ,$state){
+          var a= $state.params.userDataObj;
      	var msg;
      	$scope.finalAddressArray =[];
      	$scope.addressId = 0;
@@ -37,16 +38,6 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      	}
      	$scope.addAddress = function(){
      		$scope.addressId ++;
-     		// $scope.address ={
-     		// 		AddressId : $scope.addressId,
-     		// 		Street1 : $scope.street1,
-     		// 		Street2 : $scope.street2,
-     		// 		Zip : $scope.zip,
-     		// 		City : $scope.city,
-     		// 		State : $scope.state,
-     		// 		Country : $scope.country,
-     		// 		PhoneNumber : $scope.PhoneNumber
-     		// }
      		var address = {};
      		angular.copy($scope.address,address);
      		$scope.finalAddressArray.push(address);
@@ -66,6 +57,10 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      	}
       	$scope.removeAddress = function(addrIndex){
    	  		$scope.finalAddressArray.splice(addrIndex, 1);
+	    }
+	    $scope.editAddress = function(addrIndex){
+	    	$scope.finalAddressArray[addrIndex];
+	    	//angular.element(document.getElementById("addAddressModal").modal();
 	    }
      }
 ]);
