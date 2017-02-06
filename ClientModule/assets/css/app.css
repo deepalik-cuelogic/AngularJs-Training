@@ -1215,15 +1215,15 @@ ul.dropdown-menu.drp-mnu li a i {
 .float-left{
 	float: left;
 }
-.address-div{
+.address-div ,.contact-div{
 	position: relative;
 }
-.address-icons{
+.address-icons ,.contact-icons{
 	position: absolute;
     top: 0;
     right: 0;
 }
-.address-icons a{
+.address-icons a ,.contact-icons a{
     margin-right: 10px;
 }
 .required-field:after { 
@@ -1260,5 +1260,17 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .ng-submitted .ng-invalid , .ng-submitted .ng-empty{
     border: 1px solid red;
+}
+.modal-scrollbar{
+    height: 200px;
+    width: 100%;
+    background: #F5F5F5;
+    overflow-y: auto;
+    margin-bottom: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+.display-inline{
+    display: inline-block;
 }
 /*Custom css*/

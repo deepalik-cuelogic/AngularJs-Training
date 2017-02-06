@@ -41,12 +41,13 @@ var clientsApp = angular.module('clientsApp',['ui.router' ,'ui.bootstrap'])
               controller: 'clientDataController',
               params : {clientDataType: "Archive"}
            })
-            .state('createClient', {
+           .state('createClient', {
                 url: '/createClient',
                 templateUrl: 'app/module/client/view/createClient.html',
                 params: {userDataObj: null},
                 controller: 'createClientController'
             })
+           
 
             
          $urlRouterProvider.otherwise('/home');

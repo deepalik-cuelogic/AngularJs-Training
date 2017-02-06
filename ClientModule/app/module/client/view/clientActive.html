@@ -10,10 +10,15 @@
 			  					<tbody>
 			  						<tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize | limitTo:pageSize">
 			  							<td><input type="checkbox" name="clientCheck"></td>
-			  							<td class="custom-ellipsis"><a href="#">{{activedata.ClientName}}</a></td>
-			  							<td class="custom-ellipsis"><a href="#">{{activedata.Contacts[0].EmailAddress}}</a></td>
-			  							<td><a href="#">Edit Contact</a></td>
-			  							<td><a href="#" ng-click="editClientData($index)">Edit</a> &nbsp;/&nbsp; <a href="#">View</a> &nbsp;/&nbsp; <a href="#">Archive</a></td>
+			  							<td class="custom-ellipsis"><a href="#" ng-click="editClientData($index)">{{activedata.ClientName}}</a></td>
+			  							<td class="custom-ellipsis">
+                                            <a href="#" ng-if="activedata.Contacts[0].EmailAddress">{{activedata.Contacts[0].EmailAddress}}</a>
+                                            <a href="#" ng-click="editClientData($index)" ng-if="!activedata.Contacts[0].EmailAddress">Add Contact</a>
+                                        </td>
+			  							<td><a href="#" ng-click="editClientData($index)" ng-if="activedata.Contacts.length >0 ? true : false">Edit Contact</a>
+                                        <a href="#" ng-click="editClientData($index)" ng-if="activedata.Contacts.length >0 ? false : true">Add Contact</a></td>
+			  							<td><a href="#" ng-click="editClientData($index)">Edit</a> &nbsp;/&nbsp; 
+                                            <a href="#" ng-click="showDetails($index)">View</a> &nbsp;/&nbsp; <a href="#">Archive</a></td>
 			  						</tr>
 			  					</tbody>
 							</table>

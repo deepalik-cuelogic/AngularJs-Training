@@ -1,0 +1,11 @@
+<div class="contact-div" ng-repeat="contacts in finalContactArray">
+                    <address>
+                      <span> {{contacts.FirstName}} </span><span> {{contacts.LastName}} </span><br>
+                      <span> {{contacts.EmailAddress}} </span><br><span> {{contacts.DesignationId}} </span><br>
+                        <abbr title="Phone">Phone: {{contacts.ContactNumber}} </abbr>
+                    </address>
+                    <span class="contact-icons">
+                     <a href="#" title="remove" ng-click="removeContact($index)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                     <a href="#" title="edit" ng-click="editAddress($index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                </span>
+</div>
