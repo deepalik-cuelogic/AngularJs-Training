@@ -3,6 +3,9 @@ clientsApp.factory('clientPostDataService' , function($http) {
 	postClientData : function(data){
 		$http.post('http://dev-gahp-clients.azurewebsites.net/api/client/saveClientInfo', data);
 			
-		}
+		},
+    postClientContacts : function(data){
+		  	$http.post('http://dev-gahp-clients.azurewebsites.net/api/client/CreateContact', data);
+		  }
 	}
 })

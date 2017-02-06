@@ -14,6 +14,10 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
            //var current =$scope.dataArray[clientIndex];
            $state.go('createClient', {userDataObj: $scope.dataArray[clientIndex]});
         }
+         $scope.editClientContact = function(clientIndex){
+           //var current =$scope.dataArray[clientIndex];
+           $state.go('createClient.contact', {userDataObj: $scope.dataArray[clientIndex]});
+        }
 		// pagination controls
 			$scope.currentPage = 1;
 			$scope.totalData = $scope.dataArray.length;

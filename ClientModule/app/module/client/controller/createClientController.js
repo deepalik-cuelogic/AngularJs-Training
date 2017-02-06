@@ -15,54 +15,36 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      		};
        $scope.finalContactArray =[];
        $scope.contact ={
+                    ClientId:0,
                     ContactId:0,
      				ContactNumber : '',
-     				DesignationId : '',
+     				DesignationId : null,
      				EmailAddress : '',
      				FirstName : '',
      				LastName : '',
-     				IsPrimaryContact : '',
+     				IsPrimaryContact : false,
+                    OtherDesignation: ''
      		}
       var clientDataToedit = $state.params.userDataObj;
       $scope.clientDataObj  = {
           clientId: 0,
 	      clientName : '',
 	      countryId : 85,
-          Addresses : $scope.finalAddressArray,
-          Contacts : $scope.finalContactArray
-
+          Addresses : $scope.finalAddressArray
       }
       if(clientDataToedit){ //if true then edit page
          $scope.finalAddressArray =clientDataToedit.Addresses;
          $scope.finalContactArray =clientDataToedit.Contacts;
+          $scope.finalContactArray.forEach(function(obj) {return obj.ClientId = clientDataToedit.ClientId});//Add ClientId into finalContactArray
          $scope.clientDataObj  = {
               clientId: clientDataToedit.ClientId,
               clientName : clientDataToedit.ClientName,
               countryId : clientDataToedit.CountryId,
               Addresses : $scope.finalAddressArray,
-              Contacts : $scope.finalContactArray
             }
-         console.log($scope.clientDataObj);
          }
-//      else{
-//     	var msg;
-//            if($scope.clientName && $scope.countryName){
-//
-////                $scope.clientDataObj  = {
-////                    clientId: 0,
-////                    clientName : $scope.clientName,
-////                    countryId : parseInt($scope.countryId),
-////                    Addresses : $scope.finalAddressArray
-////                };
-//              }
-//            else{
-//                return false;
-//            }
-//
-//     	}
       
         $scope.postData =function(){
-            console.log($scope.clientDataObj);
             clientPostDataService.postClientData($scope.clientDataObj);
                 //   	.then(function (response) {
 				// 	if (response.data)
@@ -71,6 +53,9 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
 				// 	return  msg = "Service not Exists";   
 		  //       })
          }
+        $scope.postContacts = function(){
+            clientPostDataService.postClientContacts($scope.addcontacts());
+        }
      	$scope.addAddress = function(){
      		var address = {};
      		angular.copy($scope.address,address);
@@ -98,19 +83,24 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
         
         //add contacts fnctions
         $scope.addcontacts = function(){
+            $scope.contact.ClientId = clientDataToedit.ClientId;
      		var contact = {};
      		angular.copy($scope.contact,contact);
      		$scope.finalContactArray.push(contact);
- 
+            return contact;
+            
      		$scope.contact ={
+                    ClientId:0,
                     ContactId:0,
      				ContactNumber : '',
      				DesignationId : '',
      				EmailAddress : '',
      				FirstName : '',
      				LastName : '',
-     				IsPrimaryContact : '',
+     				IsPrimaryContact : false,
+                    OtherDesignation: ''
      		}
+            console.log(contact);
      	}
         
         $scope.removeContact = function(contactIndex){
