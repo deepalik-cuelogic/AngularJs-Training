@@ -25,14 +25,20 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      				IsPrimaryContact : false,
                     OtherDesignation: ''
      		}
-      var clientDataToedit = $state.params.userDataObj;
+      var clientDataToedit = $state.params.userDataObj;  
       $scope.clientDataObj  = {
           clientId: 0,
 	      clientName : '',
 	      countryId : 85,
           Addresses : $scope.finalAddressArray
       }
+       var myEl = angular.element( document.querySelector( '#contactTabli'));
+            myEl.addClass('display-none');
+         
       if(clientDataToedit){ //if true then edit page
+        var myEl = angular.element( document.querySelector( '#contactTabli'));
+            myEl.removeClass('display-none');
+          
          $scope.finalAddressArray =clientDataToedit.Addresses;
          $scope.finalContactArray =clientDataToedit.Contacts;
           $scope.finalContactArray.forEach(function(obj) {return obj.ClientId = clientDataToedit.ClientId});//Add ClientId into finalContactArray
@@ -43,18 +49,25 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
               Addresses : $scope.finalAddressArray,
             }
          }
-      
+       
+        
         $scope.postData =function(){
-            clientPostDataService.postClientData($scope.clientDataObj);
-                //   	.then(function (response) {
-				// 	if (response.data)
-				// 		return  msg = "Post Data Submitted Successfully!";
-				// }, function (response) {
-				// 	return  msg = "Service not Exists";   
-		  //       })
+          if($scope.clientDataObj.clientName && $scope.clientDataObj.countryId){
+            clientPostDataService.postClientData($scope.clientDataObj).then(function (response) {
+				 if (response.data)
+				 		alert("Client Created Successfully");
+                        $state.go('clients')
+				 }, function (response) {
+				 	alert("Invalid data") ; 
+		         })
+           }
          }
         $scope.postContacts = function(){
+          if($scope.contact.FirstName && $scope.contact.LastName && $scope.contact.EmailAddress && $scope.contact.OtherDesignation){
+            $scope.finalContactArray.push($scope.addcontacts());
             clientPostDataService.postClientContacts($scope.addcontacts());
+            $scope.contact ={}
+          }
         }
      	$scope.addAddress = function(){
      		var address = {};
@@ -78,7 +91,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
 	    }
 	    $scope.editAddress = function(addrIndex){
 	    	$scope.finalAddressArray[addrIndex];
-	    	//angular.element(document.getElementById("addAddressModal").modal();
+	    	angular.element(document.getElementById("addAddressModal")).addClass('in display-block');
 	    }
         
         //add contacts fnctions
@@ -86,7 +99,6 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             $scope.contact.ClientId = clientDataToedit.ClientId;
      		var contact = {};
      		angular.copy($scope.contact,contact);
-     		$scope.finalContactArray.push(contact);
             return contact;
             
      		$scope.contact ={
@@ -100,11 +112,21 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      				IsPrimaryContact : false,
                     OtherDesignation: ''
      		}
-            console.log(contact);
      	}
-        
-        $scope.removeContact = function(contactIndex){
-   	  		$scope.finalContactArray.splice(contactIndex, 1);
+     //function to remove contacts   
+        $scope.removeContact = function(contactIndex){	
+            var contactToDelete ={
+                ClientId: $scope.finalContactArray[contactIndex].ClientId,
+                ContactId: $scope.finalContactArray[contactIndex].ContactId
+            }
+            clientPostDataService.deleteClientContacts(contactToDelete).then(function (response) {
+				 if (response.data)
+				 		alert("Contact deleted successfully");
+				 }, function (response) {
+				 	alert("Invalid request") ; 
+		         })
+            $scope.finalContactArray.splice(contactIndex, 1);
+           
 	    }
         
      }

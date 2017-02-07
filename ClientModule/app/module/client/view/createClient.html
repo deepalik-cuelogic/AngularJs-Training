@@ -6,122 +6,18 @@
 			</ol>
         	<div class="panel panel-default">
 				  <div class="panel-body">
-
+                    <p id="success-msg" class="alert alert-success custom-success display-none">Client created Successfully..</p>
 				    <ul class="nav nav-tabs"> 
-<!--
 				    	<li ui-sref-active="active" class="active"><a ui-sref="createClient.info" data-toggle="tab">Info</a></li> 
-				    	<li ui-sref-active="active" class="active"><a ui-sref="createClient.contact" data-toggle="tab">Contacts</a></li>
--->
+				    	<li ui-sref-active="active" class="active" id="contactTabli"><a ui-sref="createClient.contact" data-toggle="tab">Contacts</a></li>
+<!--
                         <li class="active"><a href="#infoTab" data-toggle="tab">Info</a></li> 
                         <li><a href="#contactsTab" data-toggle="tab">Contact</a></li> 
+-->
 				    </ul>
 				    <div class="tab-content clearfix">
 			             <!--Content loads here-->
-<!--			         	   <div ui-view></div>-->
-                        <div class="tab-pane fade in active" id="infoTab">
-			  			  <form class="custom-form"  novalidate>
-			  			    <div class="row">
-			  			     	<div class="col-sm-6">
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="companyName">Company Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="clientDataObj.clientName" required>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="countryName">Country</label>
-								    <div class="col-sm-8">
-								      <select class="form-control"  convert-to-number>
-										    <option value="1">USA</option>
-										    <option value="2">India</option>
-										    <option value="3">UK</option>
-										    <option value="4">UAE</option>
-									  </select>
-									 </div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="companyName">Company Logo</label>
-								    <div class="col-sm-8">
-								    	<input type="button" class="btn btn-success" id="uploadLogo" value="upload"><br>
-								    	<img class="company-logo" src="assets/img/Honda-logo.png">
-								    </div>
-								  </div>
-							 	</div>
-							 
-							 <div class="col-sm-6">
-							 		<label class="col-sm-4" for="companyName">Addresses</label>
-								    <div class="col-sm-8">
-								    	<input type="button" class="btn btn-success" id="addAddress" value="Add" data-toggle="modal" data-target="#addAddressModal"><br>
-								    </div>
-								    <div id="addedAddress" class="addedAddress scrollbar">
-								        <add-address></add-address>
-								    </div>
-							 </div>
-							 </div>
-							</form>
-                             <div class="bottom-buttons col-sm-12">
-							 	<input type="button" class="btn btn-default" name="cancelButton" value="Cancel" ui-sref="clients">
-							 	<input type="button" class="btn btn-success" name="saveButton" ng-click="postData()" value="Save">
-				            </div>
-			  			</div>
-                        <div class="tab-pane fade in" id="contactsTab">
-			  			  <form class="custom-form" name="contact-form" ng-class="{submitted:custom-form.submitted}" novalidate>
-			  			    <div class="row">
-			  			     <div class="col-sm-6">
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="firstName">First Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="firstName" ng-model="contact.FirstName" required>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="lastName">Last Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="lastName" ng-model="contact.LastName" required>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="email">Email</label>
-								   	<div class="col-sm-8">
-								    	<input type="email" class="form-control" id="email" ng-model="contact.EmailAddress" required>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="contactNo">Contact Number</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="contactNo" ng-model="contact.ContactNumber">
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="designation">Designation</label>
-								    <div class="col-sm-8">
-								      <select class="form-control" id="designation" ng-model="contact.DesignationId">
-										    <option value="1">Technical</option>
-										    <option value="2">Report Delivery</option>
-										    <option value="3">Financial</option>
-										    <option value="4">Other</option>
-									  </select>
-									 </div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="contactNo">Primary Contact Person</label>
-								   	<div class="col-sm-8">
-								    	<input type="checkbox" id="contactcheck" ng-model="contact.IsPrimaryContact"><br>
-                                        <br />
-								    	<input type="button" class="btn btn-success" name="addContacts" ng-click="postContacts()" value="Add Contact">
-								   	</div>
-								  </div>
-								  <div>
-								  </div>
-							 </div>
-							 <div class="col-sm-6">
-							 		<div id="addedContacts" class="scrollbar">
-                                        <add-contact></add-contact>
-								    </div>
-							 </div>
-							</div>
-							</form>
-			  			</div>
+			         	   <div ui-view></div>
 			         	 <!--Content load here-->
                         
 			  		</div>
@@ -130,6 +26,7 @@
          </div>
 
  <!-- Modal to add address -->
+<!--
     <div id="addAddressModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -204,5 +101,6 @@
             </div>
         </div>
     </div>
+-->
 
 

@@ -1,53 +1,4 @@
- <div class="tab-pane fade in active" id="infoTab">
-			  			  <form class="custom-form"  novalidate>
-			  			    <div class="row">
-			  			     	<div class="col-sm-6">
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="companyName">Company Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="clientDataObj.clientName" ng-class="{'submitted': submitted}" required>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="countryName">Country</label>
-								    <div class="col-sm-8">
-								      <select class="form-control" ng-class="{'submitted': submitted}" ng-modal="clientDataObj.countryId">
-										    <option value="1">USA</option>
-										    <option value="2">India</option>
-										    <option value="3">UK</option>
-										    <option value="4">UAE</option>
-									  </select>
-									 </div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="companyName">Company Logo</label>
-								    <div class="col-sm-8">
-								    	<input type="button" class="btn btn-success" id="uploadLogo" value="upload"><br>
-								    	<img class="company-logo" src="assets/img/Honda-logo.png">
-								    </div>
-								  </div>
-							 	</div>
-							 
-							 <div class="col-sm-6">
-							 		<label class="col-sm-4" for="companyName">Addresses</label>
-								    <div class="col-sm-8">
-								    	<input type="button" class="btn btn-success" id="addAddress" value="Add" data-toggle="modal" data-target="#addAddressModal"><br>
-								    </div>
-								    <div id="addedAddress" class="addedAddress scrollbar">
-								        <add-address></add-address>
-								    </div>
-							 </div>
-							 </div>
-							</form>
-                             <div class="bottom-buttons col-sm-12">
-							 	<input type="button" class="btn btn-default" name="cancelButton" value="Cancel" ui-sref="clients">
-							 	<input type="button" class="btn btn-success" name="saveButton" ng-click="submitted= true; postData()" value="Save">
-				            </div>
-			  			</div>
-<!-- Modal to add address -->
-    <div id="addAddressModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
@@ -116,8 +67,3 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addAddress()">Add</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-

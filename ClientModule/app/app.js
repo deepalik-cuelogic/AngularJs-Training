@@ -8,6 +8,9 @@ var clientsApp = angular.module('clientsApp',['ui.router' ,'ui.bootstrap'])
         $state.go(to.redirectTo, params)
       }
     });
+    window.onbeforeunload = function(event) {
+      $rootScope.$broadcast('savestatedata');
+    };
 })
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -42,25 +45,25 @@ var clientsApp = angular.module('clientsApp',['ui.router' ,'ui.bootstrap'])
               params : {clientDataType: "Archive"}
            })
            .state('createClient', {
-               // redirectTo: 'createClient.info',
+                redirectTo: 'createClient.info',
                 url: '/createClient',
                 templateUrl: 'app/module/client/view/createClient.html',
                 params: {userDataObj: null},
                 controller: 'createClientController'
             })
-//            // Sub page
-//            .state('createClient.info',{
-//              url: '/info',
-//              templateUrl: 'app/module/client/view/clientInfoTab.html',
-//              controller: 'createClientController'
-//           })
-//           // Sub page
-//            .state('createClient.contact',{
-//              url: '/contact',
-//              templateUrl: 'app/module/client/view/clientContactTab.html',
-//              params: {userDataObj: null},
-//              controller: 'createClientController'
-//           })
+            // Sub page
+            .state('createClient.info',{
+              url: '/info',
+              templateUrl: 'app/module/client/view/clientInfoTab.html',
+              controller: 'createClientController'
+           })
+           // Sub page
+            .state('createClient.contact',{
+              url: '/contact',
+              templateUrl: 'app/module/client/view/clientContactTab.html',
+              params: {userDataObj: null},
+              controller: 'createClientController'
+           })
 
             
          $urlRouterProvider.otherwise('/home');
