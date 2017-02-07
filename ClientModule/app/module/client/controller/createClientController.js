@@ -64,11 +64,30 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
          }
         $scope.postContacts = function(){
           if($scope.contact.FirstName && $scope.contact.LastName && $scope.contact.EmailAddress && $scope.contact.OtherDesignation){
-            $scope.finalContactArray.push($scope.addcontacts());
-            clientPostDataService.postClientContacts($scope.addcontacts());
+              var contact = $scope.addcontacts();
+            clientPostDataService.postClientContacts(contact).then(function (response) {
+				 if (response.data){
+                    if(response.data.Status.Messages[0]=="Contact updated successfully."){
+                     for(var i = 0; i < $scope.finalContactArray.length; i++) {
+                        if ($scope.finalContactArray[i].ContactId == contact.ContactId) {
+                           $scope.finalContactArray[i] = contact;
+                            break;
+                        }
+                            
+                    }}
+                     else{
+                     $scope.finalContactArray.push(contact);
+                    }
+                 }
+                 alert("Contact created successfully");
+                       // $scope.finalContactArray.push($scope.addcontacts());
+				 }, function (response) {
+				 	alert("Invalid request") ; 
+		         })
+           }
             $scope.contact ={}
           }
-        }
+        
      	$scope.addAddress = function(){
      		var address = {};
      		angular.copy($scope.address,address);
@@ -91,10 +110,10 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
 	    }
 	    $scope.editAddress = function(addrIndex){
 	    	$scope.finalAddressArray[addrIndex];
-	    	angular.element(document.getElementById("addAddressModal")).addClass('in display-block');
+	    	angular.element(document.getElementById("addAddressModal")).addClass('in').css('display', 'block');
 	    }
         
-        //add contacts fnctions
+        //add contacts functions
         $scope.addcontacts = function(){
             $scope.contact.ClientId = clientDataToedit.ClientId;
      		var contact = {};
@@ -113,7 +132,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                     OtherDesignation: ''
      		}
      	}
-     //function to remove contacts   
+        //function to remove contacts   
         $scope.removeContact = function(contactIndex){	
             var contactToDelete ={
                 ClientId: $scope.finalContactArray[contactIndex].ClientId,
@@ -128,6 +147,20 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             $scope.finalContactArray.splice(contactIndex, 1);
            
 	    }
-        
+        //edit contact
+        $scope.editContact = function(addrIndex){
+            $scope.contact ={
+                    ClientId:$scope.finalContactArray[addrIndex].ClientId,
+                    ContactId:$scope.finalContactArray[addrIndex].ContactId,
+     				ContactNumber : $scope.finalContactArray[addrIndex].ContactNumber,
+     				DesignationId : '',
+     				EmailAddress : $scope.finalContactArray[addrIndex].EmailAddress,
+     				FirstName : $scope.finalContactArray[addrIndex].FirstName,
+     				LastName : $scope.finalContactArray[addrIndex].LastName,
+     				IsPrimaryContact : $scope.finalContactArray[addrIndex].IsPrimaryContact,
+                    OtherDesignation: $scope.finalContactArray[addrIndex].OtherDesignation
+     		}
+	    	
+        }
      }
 ]);
