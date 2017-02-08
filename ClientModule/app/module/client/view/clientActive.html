@@ -8,7 +8,7 @@
 			  						<th>Actions</th>
 			  					</thead>
 			  					<tbody>
-			  						<tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize | limitTo:pageSize">
+			  						<tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize |searchFor : searchString| limitTo:pageSize ">
 			  							<td><input type="checkbox" name="clientCheck"></td>
 			  							<td class="custom-ellipsis"><a href="#" ng-click="editClientData($index)">{{activedata.ClientName}}</a></td>
 			  							<td class="custom-ellipsis">
@@ -18,7 +18,7 @@
 			  							<td><a href="#" ng-click="editClientContact($index)" ng-if="activedata.Contacts.length >0 ? true : false">Edit Contact</a>
                                         <a href="#" ng-click="editClientContact($index)" ng-if="activedata.Contacts.length >0 ? false : true">Add Contact</a></td>
 			  							<td><a href="#" ng-click="editClientData($index)">Edit</a> &nbsp;/&nbsp; 
-                                            <a href="#" ng-click="showDetails($index)">View</a> &nbsp;/&nbsp; <a href="#">Archive</a></td>
+                                            <a href="#" ng-click="showDetails($index)">View</a> &nbsp;/&nbsp; <a href="#" ng-click="archiveClient(activedata.ClientId)">Archive</a></td>
 			  						</tr>
 			  					</tbody>
 							</table>

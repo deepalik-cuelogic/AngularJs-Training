@@ -1,5 +1,5 @@
-clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClientDataService', '$stateParams' ,'$state','$modal',
-     function clientDataController($scope , clientData , setClientDataService , $stateParams , $state ,$modal){
+clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClientDataService', '$stateParams' ,'$state','$modal','clientPostDataService',
+     function clientDataController($scope , clientData , setClientDataService , $stateParams , $state ,$modal,clientPostDataService){
      	//console.log(clientData.data);
      	setClientDataService.setData(clientData.data);
      	//var fetchedData = setClientDataService.getData();
@@ -24,8 +24,8 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
 			$scope.pageSize = 10; // items per page
 			$scope.noOfPages = Math.ceil($scope.totalData / $scope.pageSize);
          
-      //modal functions
-       $scope.showDetails = function (item) {
+          //modal functions
+         $scope.showDetails = function (item) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'app/module/client/view/detailsModal.html',
@@ -43,6 +43,31 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
                 // dismiss
             });
         };
+         
+         //archive client data
+         $scope.archiveClient = function(id){
+             
+            clientPostDataService.postClientArchive({ClientId:id}).then(function (response){
+				 if (response.data)
+				 		setClientDataService.update({
+                             Id :id , 
+                             Action : $scope.currentActiveTab
+                         });
+                    alert("Client Archived") ; 
+				 }, function (response) {
+				 	alert(response.data.Messages[0]) ; 
+		         })
+             
+         }
+         
+         //Restore client data
+         $scope.restoreClient = function(id){
+             setClientDataService.update({
+                 Id :id , 
+                 Action : $scope.currentActiveTab
+             });
+         }
+         
       
    }
 

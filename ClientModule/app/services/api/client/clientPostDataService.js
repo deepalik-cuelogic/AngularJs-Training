@@ -10,7 +10,15 @@ clientsApp.factory('clientPostDataService' , function($http) {
 	
     deleteClientContacts : function(data){
 		  	return $http.post('http://dev-gahp-clients.azurewebsites.net/api/client/Deletecontact', data);
-		  }
-	}
+		  },
+    postClientArchive : function(data){
+            return $http.post('http://dev-gahp-clients.azurewebsites.net/api/client/Archive', data);
+    },
+    postClientActive : function(data){
+            return $http.post('http://dev-gahp-clients.azurewebsites.net/api/client/Activate', data);
+    }
+
+ }
+    
  
 })
