@@ -81,8 +81,10 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                  }
                  alert("Contact created successfully");
                        // $scope.finalContactArray.push($scope.addcontacts());
+                 angular.element( document.querySelector( '#contactForm')).removeClass("ng-submitted");
 				 }, function (response) {
 				 	alert("Invalid request") ; 
+                    angular.element( document.querySelector( '#contactForm')).removeClass("ng-submitted");
 		         })
            }
             $scope.contact ={}
