@@ -1,5 +1,5 @@
-clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataService','$stateParams','$state',
-     function createClientController($scope , clientPostDataService , $stateParams ,$state){
+clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataService','$stateParams','$state','$timeout',
+     function createClientController($scope , clientPostDataService , $stateParams ,$state ,$timeout){
     // all variable declaration
       $scope.finalAddressArray =[];
       $scope.address ={
@@ -24,12 +24,13 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      				LastName : '',
      				IsPrimaryContact : false,
                     OtherDesignation: ''
-     		}
+     		};
+               $scope.contact.IsPrimaryContact = false;
       var clientDataToedit = $state.params.userDataObj;  
       $scope.clientDataObj  = {
           clientId: 0,
 	      clientName : '',
-	      countryId : 85,
+	      countryId : '',
           Addresses : $scope.finalAddressArray
       }
        var myEl = angular.element( document.querySelector( '#contactTabli'));
@@ -45,9 +46,12 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
          $scope.clientDataObj  = {
               clientId: clientDataToedit.ClientId,
               clientName : clientDataToedit.ClientName,
-              countryId : clientDataToedit.CountryId,
+              countryId : clientDataToedit.CountryId.toString(),
               Addresses : $scope.finalAddressArray,
             }
+             if($scope.clientDataObj.countryId >10 ){
+                $scope.clientDataObj.countryId = Math.ceil(clientDataToedit.CountryId/10).toString();
+             }
          }
        
         
@@ -55,19 +59,19 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
           if($scope.clientDataObj.clientName && $scope.clientDataObj.countryId){
             clientPostDataService.postClientData($scope.clientDataObj).then(function (response) {
 				 if (response.data)
-				 		alert(response.data.Status.Messages[0]);
+				     alert(response.data.Status.Messages[0]);
+                     //alert("Client Created");
                         $state.go('clients')
 				 }, function (response) {
-				 	alert("Invalid data") ; 
+				 	alert(response.data.Messages[0]) ; 
 		         })
            }
          }
         $scope.postContacts = function(){
           if($scope.contact.FirstName && $scope.contact.LastName && $scope.contact.EmailAddress && $scope.contact.OtherDesignation){
-              var contact = $scope.addcontacts();
-              angular.element( document.querySelectorAll( '#contactForm input.submitted')).removeClass('submitted');
-              angular.element( document.querySelectorAll( '#contactForm input')).next().addClass('ng-hide');
+            var contact = $scope.addcontacts();
             clientPostDataService.postClientContacts(contact).then(function (response) {
+                
 				 if (response.data){
                     angular.element(document.querySelector('#addContact')).attr('value','Add Contact');
                     if(response.data.Status.Messages[0]=="Contact updated successfully."){
@@ -77,29 +81,27 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                             break;
                         }
                             
-                    }
+                        }
                         alert("Contact updated");
-                        $scope.contact ={}
-                        angular.element( document.querySelectorAll( '#contactForm input.submitted')).removeClass('submitted');
-                        angular.element( document.querySelectorAll( '#contactForm select.submitted')).removeClass('submitted');
-                        angular.element( document.querySelectorAll( '#contactForm input')).next().addClass('ng-hide');
                     }
                      else{
                      contact.ContactId = response.data.Data.ContactId;
-                     $scope.contact ={}
+                     
                      $scope.finalContactArray.push(contact);
+                     alert("Contact created"); 
+                     
                      $scope.contactform.$setPristine();
                      $scope.contactform.$setUntouched();
-                     $scope.contactform.$touched = false;
-                     alert("Contact created"); 
-                     angular.element( document.querySelectorAll( '#contactForm input.submitted')).removeClass('submitted');
-                     angular.element( document.querySelectorAll( '#contactForm select.submitted')).removeClass('submitted');
-                    angular.element( document.querySelectorAll( '#contactForm input')).next().addClass('ng-hide');
                      //$state.go('createClient.contact')
                     
                     }
-                     //$state.go('createClient.contact')
-                    // $scope.contact ={}
+                     $scope.contact ={};
+                     $timeout(function () {
+                       angular.element( document.querySelectorAll( '#contactForm input.submitted')).removeClass('submitted');
+                       angular.element( document.querySelectorAll( '#contactForm select.submitted')).removeClass('submitted');
+                       angular.element( document.querySelectorAll( '#contactForm input')).next().addClass('ng-hide');
+                       angular.element( document.querySelectorAll( '#contactForm select')).next().addClass('ng-hide');
+                    });
                  }
                      // $scope.finalContactArray.push($scope.addcontacts());
                 
@@ -113,6 +115,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
           }
         
      	$scope.addAddress = function(){
+         if($scope.address.Street1 && $scope.address.Street2 && $scope.address.Zip && $scope.address.PhoneNumber){
      		var address = {};
      		angular.copy($scope.address,address);
             var addrToReplace;
@@ -124,10 +127,12 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             
             if(addrToReplace){
                 $scope.finalAddressArray[addrToReplace.addrIndex] = address;
+                $("#addAddressModal").modal("hide");
                 alert("Address updated");
             }
             else{
      		 $scope.finalAddressArray.push(address);
+                $("#addAddressModal").modal("hide");
                 alert("Address added");
             }
             //$scope.finalAddressArray.push(address);
@@ -142,6 +147,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                     CountryName : '',
      				PhoneNumber : ''
      		}
+          }
      	}
       	$scope.removeAddress = function(addrIndex){
    	  		$scope.finalAddressArray.splice(addrIndex, 1);
@@ -213,9 +219,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             angular.element(document.querySelector('#addContact')).attr('value','update');
 	    	
         }
-        
-        var timePeriodInMs = 4000;
+    
 
-       
      }
 ]);

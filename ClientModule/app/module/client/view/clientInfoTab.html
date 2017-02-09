@@ -5,25 +5,33 @@
 								  <div class="form-group col-sm-12">
 								    <label class="col-sm-4 required-field" for="companyName">Company Name</label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" name="companyName" ng-model="clientDataObj.clientName" ng-class="{'submitted': submitted}" required>
+								    	<input type="text" class="form-control" name="companyName" ng-minlength="8" maxlength="255" ng-model="clientDataObj.clientName" ng-class="{'submitted': submitted}" required>
                                         <span class="color-red" ng-show="submitted && createClientForm.companyName.$error.required">Company name is required.</span>
+                                        <span class="color-red"  ng-show="createClientForm.companyName.$dirty && createClientForm.companyName.$error.minlength">Client name is too short</span>
 								   	</div>
 								  </div>
 								  <div class="form-group col-sm-12">
 								    <label class="col-sm-4 required-field" for="countryName">Country</label>
 								    <div class="col-sm-8">
-								      <select class="form-control" ng-class="{'submitted': submitted}" ng-modal="clientDataObj.countryId">
-										    <option value="1">USA</option>
-										    <option value="2">India</option>
-										    <option value="3">UK</option>
-										    <option value="4">UAE</option>
+								      <select class="form-control" required ng-class="{'submitted': submitted}" ng-model="clientDataObj.countryId"> 
+                                            <option value="1">Australia</option>
+                                            <option value="2">Bhutan</option>
+                                            <option value="3">France</option>
+                                            <option value="4">Germany</option>
+                                            <option value="5">Hong Kong</option>
+										    <option value="6">India</option>
+                                            <option value="7">Japan</option>
+										    <option value="8">united kingdom</option>
+                                            <option value="9">United States of America</option>
+										    <option value="10">united arab emirates</option>
+                                            
 									  </select>
 									 </div>
 								  </div>
 								  <div class="form-group col-sm-12">
 								    <label class="col-sm-4" for="companyName">Company Logo</label>
 								    <div class="col-sm-8">
-								    	<input type="button" class="btn btn-success" id="uploadLogo" value="upload"><br>
+								    	<input type="button" class="btn btn-success" id="uploadLogo" value="upload" disabled><br>
 								    	<img class="company-logo" src="assets/img/Honda-logo.png" style="display:none">
 								    </div>
 								  </div>
@@ -65,7 +73,7 @@
 								  <div class="col-sm-6 form-group">
 								    <label class="col-sm-4 required-field" for="street2">Street2 </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Street2" name="street2" required>
+								    	<input type="text" class="form-control" ng-model="address.Street2" name="street2" ng-class="{'submitted': submitted}" required>
                                         <span class="color-red" ng-show="submitted && addressform.street2.$error.required">required</span>
 								   	</div>
 								  </div>
@@ -99,7 +107,7 @@
 								  <div class="col-sm-6 form-group">
 								    <label class="col-sm-4 required-field" for="zipcode" name="zip">Zip </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Zip" name="zip" required>
+								    	<input type="text" class="form-control" ng-model="address.Zip" name="zip" ng-class="{'submitted': submitted}" maxlength="8" required>
                                         <span class="color-red" ng-show="submitted && addressform.zip.$error.required">required</span>
 								   	</div>
 								  </div>
@@ -107,9 +115,9 @@
 							<div class="row">
 			  			     	<div class="col-sm-6">
 								  <div class="form-group">
-								    <label class="col-sm-4" for="phoneNumber">Phone Number </label>
+								    <label class="col-sm-4 required-field" for="phoneNumber">Phone Number </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.PhoneNumber" required>
+								    	<input type="text" class="form-control" ng-model="address.PhoneNumber" ng-class="{'submitted': submitted}" maxlength="15" required valid-number>
                                         <span class="color-red" ng-show="submitted && addressform.zip.$error.required">required</span>
 								   	</div>
 								  </div>
@@ -119,7 +127,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="addAddress(newadd)" value="Add">
+                    <input type="submit" class="btn btn-primary" ng-click="submitted=true ; addAddress()" value="Add">
                 </div>
             </div>
         </div>

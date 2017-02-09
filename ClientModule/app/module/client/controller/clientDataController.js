@@ -62,10 +62,16 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
          
          //Restore client data
          $scope.restoreClient = function(id){
-             setClientDataService.update({
-                 Id :id , 
-                 Action : $scope.currentActiveTab
-             });
+           clientPostDataService.postClientActive({ClientId:id}).then(function (response){
+            if (response.data)
+                 setClientDataService.update({
+                     Id :id , 
+                     Action : $scope.currentActiveTab
+                 });
+               alert("Client Activated") ; 
+            },function (response) {
+				 	alert(response.data.Messages[0]) ; 
+		         })
          }
          
       
