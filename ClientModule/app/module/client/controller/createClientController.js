@@ -60,15 +60,14 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
           if($scope.clientDataObj.clientName && $scope.clientDataObj.countryId){
             clientPostDataService.postClientData($scope.clientDataObj).then(function (response) {
 				 if (response.data){
-                     if($scope.companyLogo){
+                     if(typeof($scope.companyLogo) === "object"){
                        angular.element(document.querySelector('#uploadedImg')).addClass('display-none');
                        $scope.companyLogo.append('CompanyId', response.data.Data.ClientId);
                        clientPostDataService.uploadLogo($scope.companyLogo);
-
-                        alert(response.data.Status.Messages[0]);
+                     }
+                     alert(response.data.Status.Messages[0]);
                              //alert("Client Created");
                         $state.go('clients')
-                     }
                    }
 				 }, function (response) {
 				 	alert(response.data.Messages[0]) ; 
