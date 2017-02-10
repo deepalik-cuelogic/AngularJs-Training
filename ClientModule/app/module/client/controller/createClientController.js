@@ -79,8 +79,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                         if ($scope.finalContactArray[i].ContactId == contact.ContactId) {
                            $scope.finalContactArray[i] = contact;
                             break;
-                        }
-                            
+                        }    
                         }
                         alert("Contact updated");
                     }
@@ -151,6 +150,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      	}
       	$scope.removeAddress = function(addrIndex){
    	  		$scope.finalAddressArray.splice(addrIndex, 1);
+            alert("Address removed..");
 	    }
 	    $scope.editAddress = function(addrIndex){
 	    	$scope.finalAddressArray[addrIndex];

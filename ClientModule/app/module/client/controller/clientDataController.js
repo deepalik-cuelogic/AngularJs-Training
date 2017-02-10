@@ -11,8 +11,14 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
         $scope.IsContactAvail = 'false'
         //edit client data method
         $scope.editClientData = function(clientIndex){
-           //var current =$scope.dataArray[clientIndex];
-           $state.go('createClient', {userDataObj: $scope.dataArray[clientIndex]});
+          var dataObjectToSend
+          for (var i=0 ; i<= $scope.dataArray.length ; i++){
+                if($scope.dataArray[i].ClientId === clientIndex){
+                   dataObjectToSend = $scope.dataArray[i];
+                   break;
+                }
+            }
+           $state.go('createClient', {userDataObj: dataObjectToSend});
         }
          $scope.editClientContact = function(clientIndex){
            //var current =$scope.dataArray[clientIndex];
@@ -26,13 +32,19 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
          
           //modal functions
          $scope.showDetails = function (item) {
-
+             var dataObjectToSend
+             for (var i=0 ; i<= $scope.dataArray.length ; i++){
+                if($scope.dataArray[i].ClientId === item){
+                   dataObjectToSend = $scope.dataArray[i];
+                   break;
+                }
+            }
             var modalInstance = $modal.open({
                 templateUrl: 'app/module/client/view/detailsModal.html',
                 controller: 'DetailModalController',                       
                 resolve: {
                     item: function () {
-                        return  $scope.dataArray[item];
+                        return  dataObjectToSend;
                     },                            
                 }
             });

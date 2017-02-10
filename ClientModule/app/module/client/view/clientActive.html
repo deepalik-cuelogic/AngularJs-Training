@@ -17,8 +17,8 @@
                                         </td>
 			  							<td><a href="#" ng-click="editClientContact($index)" ng-if="activedata.Contacts.length >0 ? true : false">Edit Contact</a>
                                         <a href="#" ng-click="editClientContact($index)" ng-if="activedata.Contacts.length >0 ? false : true">Add Contact</a></td>
-			  							<td><a href="#" ng-click="editClientData($index)">Edit</a> &nbsp;/&nbsp; 
-                                            <a href="#" ng-click="showDetails($index)">View</a> &nbsp;/&nbsp; <a href="#" ng-click="archiveClient(activedata.ClientId)">Archive</a></td>
+			  							<td><a href="#" ng-click="editClientData(activedata.ClientId)">Edit</a> &nbsp;/&nbsp; 
+                                            <a href="#" ng-click="showDetails(activedata.ClientId)">View</a> &nbsp;/&nbsp; <a href="#" ng-click="archiveClient(activedata.ClientId)">Archive</a></td>
 			  						</tr>
 			  					</tbody>
 							</table>
