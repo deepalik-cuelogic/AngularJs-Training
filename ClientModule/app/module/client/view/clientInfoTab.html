@@ -33,9 +33,18 @@
 								    <label class="col-sm-4" for="companyName">Company Logo</label>
 								    <div class="col-sm-8">
 								    	<input type="button" class="btn btn-success" value="upload" ng-click="clickFileInput()"><br>
-                                        <input id="uploadLogo" type="file"  name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-								    	<img id="imagePreview" class="company-logo" ng-src="{{CompanyLogo}}">
+                                        <input id="uploadLogo" type="file"  name="file" onchange="angular.element(this).scope().uploadFile(this.files)" accept="image/*"/>
+                                      <div>
+                                        <div class="img-to-upload display-none">
+								    	   <img id="imagePreview" class="company-logo">
+                                            <a ng-click="cancelImgUpload()">cancel</a>
+                                        </div>
+                                        <div id="uploadedImg" class="uploaded-img" ng-if="companyLogo" data-attr="{{clientDataObj.clientId}}">
+                                            <img  class="company-logo"  ng-src="{{companyLogo}}">
+                                            <a ng-click="removeUploadedImg()">remove</a>
+                                        </div>
                                         
+                                      </div>
 								    </div>
 								  </div>
 							 	</div>
@@ -53,7 +62,7 @@
 							</form>
                              <div class="bottom-buttons col-sm-12">
 							 	<input type="button" class="btn btn-default" name="cancelButton" value="Cancel" ui-sref="clients">
-							 	<input type="submit" class="btn btn-success" name="saveButton" ng-click="submitted= true; postData()" value="Save">
+							 	<input type="submit" class="btn btn-success" name="saveButton" ng-click="submitted= true; postData()" value="Save" form="createClientForm">
 				            </div>
 			  			</div>
 <!-- Modal to add address -->

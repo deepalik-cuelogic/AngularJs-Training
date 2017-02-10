@@ -25,7 +25,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      				IsPrimaryContact : false,
                     OtherDesignation: ''
      		};
-               $scope.contact.IsPrimaryContact = false;
+      $scope.contact.IsPrimaryContact = false;
       var clientDataToedit = $state.params.userDataObj;  
       $scope.clientDataObj  = {
           clientId: 0,
@@ -47,8 +47,9 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
               clientId: clientDataToedit.ClientId,
               clientName : clientDataToedit.ClientName,
               countryId : clientDataToedit.CountryId.toString(),
-              Addresses : $scope.finalAddressArray,
+              Addresses : $scope.finalAddressArray
             }
+          $scope.companyLogo = clientDataToedit.CompanyLogo;
              if($scope.clientDataObj.countryId >10 ){
                 $scope.clientDataObj.countryId = Math.ceil(clientDataToedit.CountryId/10).toString();
              }
@@ -58,10 +59,17 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
         $scope.postData =function(){
           if($scope.clientDataObj.clientName && $scope.clientDataObj.countryId){
             clientPostDataService.postClientData($scope.clientDataObj).then(function (response) {
-				 if (response.data)
-				     alert(response.data.Status.Messages[0]);
-                     //alert("Client Created");
+				 if (response.data){
+                     if($scope.companyLogo){
+                       angular.element(document.querySelector('#uploadedImg')).addClass('display-none');
+                       $scope.companyLogo.append('CompanyId', response.data.Data.ClientId);
+                       clientPostDataService.uploadLogo($scope.companyLogo);
+
+                        alert(response.data.Status.Messages[0]);
+                             //alert("Client Created");
                         $state.go('clients')
+                     }
+                   }
 				 }, function (response) {
 				 	alert(response.data.Messages[0]) ; 
 		         })
@@ -226,29 +234,44 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                 document.getElementById('uploadLogo').click();
             }, 0);
         };
-
+        //upload Image 
         $scope.uploadFile = function(files) {
             var imgReader = new FormData();
             var file = imgReader.get('file');
             var reader = new FileReader();
              imgReader.append('file', files[0]);
-             imgReader.append('ClientId', 428);
-            clientPostDataService.uploadLogo(imgReader).then(function (response) {
-                
-				 if (response.data){
-                     alert("success");
-                 }
-            }, function (response) {
-				 	alert("dammmm") ; 
-                    
-		         })
-                                                            
-            reader.readAsDataURL(files[0]);
-           reader.onload   = function (e) {
+             //imgReader.append('CompanyId', 428);
+             $scope.companyLogo = imgReader;
+             reader.readAsDataURL(files[0]);
+             reader.onload   = function (e) {
 //             //$scope.CompanyLogo = e.target.result;
-            alert('inside');
-           angular.element(document.querySelector('#imagePreview')).attr('src',e.target.result);
+               angular.element(document.querySelector('.img-to-upload')).removeClass('display-none');
+               angular.element(document.querySelector('#imagePreview')).attr('src',e.target.result);    
+               angular.element(document.querySelector('#uploadedImg')).addClass('animated-img-div');
+            }
+            angular.element(document.querySelector('#uploadLogo'))[0].value="";
+             
         }
-     }
-     }
+      // remove image
+        $scope.removeUploadedImg = function() {
+            var clientId = {CompanyId : angular.element(document.querySelector('#uploadedImg')).attr('data-attr')}
+            clientPostDataService.removeLogo(clientId).then(function (response) {
+                         if (response.data){
+                             alert("Company logo removed");
+                             $scope.companyLogo ='';
+                                 }
+                            }, function (response) {
+                                    alert(response.data.Messages[0]) ; 
+
+                         });
+        }
+     // Cancel upload
+        $scope.cancelImgUpload = function() {
+            angular.element(document.querySelector('#imagePreview')).attr('src','');
+            angular.element(document.querySelector('.img-to-upload')).addClass('display-none')
+            angular.element(document.querySelector('#uploadedImg')).removeClass('animated-img-div');
+            $scope.companyLogo = clientDataToedit.CompanyLogo;
+            
+        }
+}
 ]);

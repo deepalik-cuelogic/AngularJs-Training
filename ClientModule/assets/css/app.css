@@ -1178,9 +1178,9 @@ ul.dropdown-menu.drp-mnu li a i {
 	margin-top: 10px;
 }
 .company-logo{
-	width: 200px;
     border: 1px dotted #ddd;
     margin-top: 15px;
+    width: 100%;
 }
 .scrollbar
 {
@@ -1347,5 +1347,14 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 #uploadLogo{
  visibility: hidden;
+}
+.uploaded-img , .img-to-upload{
+   display: inline-block;
+   width: 200px;
+}
+.animated-img-div{
+    width: 130px;
+    vertical-align: top;
+    margin-left: 10px;
 }
 /*Custom css*/

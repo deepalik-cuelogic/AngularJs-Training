@@ -23,7 +23,10 @@ clientsApp.factory('clientPostDataService' , function($http) {
                 transformRequest: angular.identity
             });
     
-          }
+    },
+    removeLogo : function(data){
+        return $http.post('//dev-gahp-data-providers.azurewebsites.net/api/company/removelogo', data);
+     }
  }
     
  

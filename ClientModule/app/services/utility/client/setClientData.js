@@ -11,8 +11,6 @@ clientsApp.factory('setClientDataService' , function() {
 			return setDataObj.Data[params.Action] ;
 		},
         update : function(params){
-            console.log(setDataObj);
-            console.log(params);
             if(params.Action == "Active"){
                 setDataObj.Data[params.Action].forEach(function(obj,i) 
                     {
