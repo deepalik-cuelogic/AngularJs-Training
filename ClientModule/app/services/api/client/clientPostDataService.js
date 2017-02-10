@@ -17,11 +17,13 @@ clientsApp.factory('clientPostDataService' , function($http) {
     postClientActive : function(data){
             return $http.post('http://dev-gahp-clients.azurewebsites.net/api/client/Activate', data);
     },
-//    uploadLogo : function(data){
-//            return $http.post('//dev-gahp-data-providers.azurewebsites.net/api/company/uploadlogo', data, {
-//            }
-//    }
-
+    uploadLogo : function(data){
+            return $http.post('//dev-gahp-data-providers.azurewebsites.net/api/company/uploadlogo', data, {
+                headers: {'Content-Type': undefined },
+                transformRequest: angular.identity
+            });
+    
+          }
  }
     
  

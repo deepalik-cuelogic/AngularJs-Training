@@ -219,7 +219,36 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             angular.element(document.querySelector('#addContact')).attr('value','update');
 	    	
         }
-    
+        
+        //open input file element
+        $scope.clickFileInput = function() {
+            setTimeout(function() {
+                document.getElementById('uploadLogo').click();
+            }, 0);
+        };
 
+        $scope.uploadFile = function(files) {
+            var imgReader = new FormData();
+            var file = imgReader.get('file');
+            var reader = new FileReader();
+             imgReader.append('file', files[0]);
+             imgReader.append('ClientId', 428);
+            clientPostDataService.uploadLogo(imgReader).then(function (response) {
+                
+				 if (response.data){
+                     alert("success");
+                 }
+            }, function (response) {
+				 	alert("dammmm") ; 
+                    
+		         })
+                                                            
+            reader.readAsDataURL(files[0]);
+           reader.onload   = function (e) {
+//             //$scope.CompanyLogo = e.target.result;
+            alert('inside');
+           angular.element(document.querySelector('#imagePreview')).attr('src',e.target.result);
+        }
+     }
      }
 ]);
