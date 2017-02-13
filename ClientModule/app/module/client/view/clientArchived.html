@@ -1,20 +1,25 @@
 <div class="tab-pane fade in" id="archivedTab">
+                      <div class="searchBox">
+                          <div class="container-1">
+                              <span class="icon"><span class="glyphicon glyphicon-search"></span></span>
+                              <input type="search" id="search" ng-model="searchString" placeholder="Search for client name"/>
+                          </div>
+                        </div>
 			  				<table class="table custom-table">
 			  					<thead>
-			  						<th  class="width-5"></th>
 			  						<th>Client Name</th>
 			  						<th>Email</th>
 			  						<th>Contact</th>
 			  						<th>Actions</th>
 			  					</thead>
 			  					<tbody>
-			  						<tr ng-repeat="archivedata in dataArray">
-			  							<td><input type="checkbox" name="clientCheck"></td>
+			  						<tr ng-repeat="archivedata in dataArray |pageStartFrom:(currentPage-1)*pageSize| limitTo:pageSize|searchFor : searchString">
 			  							<td><a href="#">{{archivedata.ClientName}}</a></td>
 			  							<td><a href="#">{{archivedata.Contacts[0].EmailAddress}}</a></td>
 			  							<td><a href="#">Edit Contact</a></td>
-			  							<td><a href="#">View</a> &nbsp;/&nbsp; <a href="#" ng-click="restoreClient(archivedata.ClientId)">Restore</a></td>
+			  							<td><a href="#" ng-click="showDetails(archivedata.ClientId)">View</a> &nbsp;/&nbsp; <a href="#" ng-click="restoreClient(archivedata.ClientId)">Restore</a></td>
 			  						</tr>
 			  					</tbody>
 							</table>
+                            <pagination page="currentPage" max-size="noOfPages" total-items="totalData" items-per-page="pageSize"></pagination>
 			  			</div>

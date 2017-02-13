@@ -21,8 +21,14 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
            $state.go('createClient', {userDataObj: dataObjectToSend});
         }
          $scope.editClientContact = function(clientIndex){
+            for (var i=0 ; i<= $scope.dataArray.length ; i++){
+                if($scope.dataArray[i].ClientId === clientIndex){
+                   dataObjectToSend = $scope.dataArray[i];
+                   break;
+                }
+            }
            //var current =$scope.dataArray[clientIndex];
-           $state.go('createClient.contact', {userDataObj: $scope.dataArray[clientIndex]});
+           $state.go('createClient.contact', {userDataObj: dataObjectToSend});
         }
 		// pagination controls
 			$scope.currentPage = 1;
@@ -58,7 +64,8 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
          
          //archive client data
          $scope.archiveClient = function(id){
-             
+    
+	     if(confirm("Are you sure you want to archive client?")){   
             clientPostDataService.postClientArchive({ClientId:id}).then(function (response){
 				 if (response.data)
 				 		setClientDataService.update({
@@ -70,6 +77,7 @@ clientsApp.controller('clientDataController' ,['$scope' , 'clientData', 'setClie
 				 	alert(response.data.Messages[0]) ; 
 		         })
              
+           }
          }
          
          //Restore client data

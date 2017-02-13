@@ -7,7 +7,7 @@
 								   	<div class="col-sm-8">
 								    	<input type="text" class="form-control" name="companyName" ng-minlength="8" maxlength="255" ng-model="clientDataObj.clientName" ng-class="{'submitted': submitted}" required>
                                         <span class="color-red" ng-show="submitted && createClientForm.companyName.$error.required">Company name is required.</span>
-                                        <span class="color-red"  ng-show="createClientForm.companyName.$dirty && createClientForm.companyName.$error.minlength">Client name is too short</span>
+                                        <span class="color-red"  ng-show="createClientForm.companyName.$touched && createClientForm.companyName.$error.minlength">Client name is too short</span>
 								   	</div>
 								  </div>
 								  <div class="form-group col-sm-12">
@@ -33,13 +33,13 @@
 								    <label class="col-sm-4" for="companyName">Company Logo</label>
 								    <div class="col-sm-8">
 								    	<input type="button" class="btn btn-success" value="upload" ng-click="clickFileInput()"><br>
-                                        <input id="uploadLogo" type="file"  name="file" onchange="angular.element(this).scope().uploadFile(this.files)" accept="image/*"/>
+                                        <input id="uploadLogo" type="file"  name="file" onchange="angular.element(this).scope().uploadFile(this.files)" accept="image/*" ngf-pattern="'.pdf,.jpg,.png'" />
                                       <div>
                                         <div class="img-to-upload display-none">
 								    	   <img id="imagePreview" class="company-logo">
                                             <a ng-click="cancelImgUpload()">cancel</a>
                                         </div>
-                                        <div id="uploadedImg" class="uploaded-img" ng-if="companyLogo" data-attr="{{clientDataObj.clientId}}">
+                                        <div id="uploadedImg" class="uploaded-img" ng-show="showImage" data-attr="{{clientDataObj.clientId}}">
                                             <img  class="company-logo"  ng-src="{{companyLogo}}">
                                             <a ng-click="removeUploadedImg()">remove</a>
                                         </div>
@@ -70,7 +70,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="modalClose()">&times;</button>
                 </div>
                 <div class="modal-body">
                      <form class="custom-form" novalidate name="addressform">
@@ -78,15 +78,15 @@
 								  <div class="col-sm-6 form-group">
 								    <label class="col-sm-4 required-field" for="street1">Street1 </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Street1" name="street1" ng-class="{'submitted': submitted}" required>
-                                        <span class="color-red" ng-show="submitted && addressform.street1.$error.required">required</span>
+								    	<input type="text" class="form-control" ng-model="address.Street1" name="street1" ng-class="{'addressform.submitted': submitted}" required>
+                                        <span class="color-red" ng-show="addressform.submitted && addressform.street1.$error.required">required</span>
 								   	</div>
 								</div>
 								  <div class="col-sm-6 form-group">
 								    <label class="col-sm-4 required-field" for="street2">Street2 </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Street2" name="street2" ng-class="{'submitted': submitted}" required>
-                                        <span class="color-red" ng-show="submitted && addressform.street2.$error.required">required</span>
+								    	<input type="text" class="form-control" ng-model="address.Street2" name="street2" ng-class="{'addressform.submitted': submitted}" required>
+                                        <span class="color-red" ng-show="addressform.submitted && addressform.street2.$error.required">required</span>
 								   	</div>
 								  </div>
 							</div>
@@ -119,8 +119,8 @@
 								  <div class="col-sm-6 form-group">
 								    <label class="col-sm-4 required-field" for="zipcode" name="zip">Zip </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Zip" name="zip" ng-class="{'submitted': submitted}" maxlength="8" required>
-                                        <span class="color-red" ng-show="submitted && addressform.zip.$error.required">required</span>
+								    	<input type="text" class="form-control" ng-model="address.Zip" name="zip" ng-class="{'addressform.submitted': submitted}" maxlength="8" required>
+                                        <span class="color-red" ng-show="addressform.submitted && addressform.zip.$error.required">required</span>
 								   	</div>
 								  </div>
 							</div>
@@ -129,8 +129,8 @@
 								  <div class="form-group">
 								    <label class="col-sm-4 required-field" for="phoneNumber">Phone Number </label>
 								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.PhoneNumber" ng-class="{'submitted': submitted}" maxlength="15" required valid-number>
-                                        <span class="color-red" ng-show="submitted && addressform.zip.$error.required">required</span>
+								    	<input type="text" class="form-control" ng-model="address.PhoneNumber" ng-class="{'phoneNumber.submitted': submitted}" maxlength="15" required valid-number name="phoneNumber">
+                                        <span class="color-red" ng-show="addressform.submitted && addressform.phoneNumber.$error.required">required</span>
 								   	</div>
 								  </div>
 								</div>
@@ -138,11 +138,12 @@
 						</form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" ng-click="submitted=true ; addAddress()" value="Add">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="modalClose()">Close</button>
+                    <input type="submit" class="btn btn-primary"  ng-click="addAddress()" value="Add">
                 </div>
             </div>
         </div>
     </div>
+
 
 

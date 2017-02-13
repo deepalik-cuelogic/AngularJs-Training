@@ -50,6 +50,12 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
               Addresses : $scope.finalAddressArray
             }
           $scope.companyLogo = clientDataToedit.CompanyLogo;
+          if($scope.companyLogo !== "" && angular.isString($scope.companyLogo)){
+              $scope.showImage = true;
+          }
+          else{
+              $scope.showImage = false;
+          }
              if($scope.clientDataObj.countryId >10 ){
                 $scope.clientDataObj.countryId = Math.ceil(clientDataToedit.CountryId/10).toString();
              }
@@ -67,7 +73,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
                      }
                      alert(response.data.Status.Messages[0]);
                              //alert("Client Created");
-                        $state.go('clients')
+                        $state.go('clients');
                    }
 				 }, function (response) {
 				 	alert(response.data.Messages[0]) ; 
@@ -80,6 +86,12 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             clientPostDataService.postClientContacts(contact).then(function (response) {
                 
 				 if (response.data){
+                     //if current is primary remove other primary from contact list
+                     if(contact.IsPrimaryContact == true){
+                        for(var i = 0; i < clientDataToedit.Contacts.length; i++) {
+                            clientDataToedit.Contacts[i].IsPrimaryContact = false;
+                        }
+                     }
                     angular.element(document.querySelector('#addContact')).attr('value','Add Contact');
                     if(response.data.Status.Messages[0]=="Contact updated successfully."){
                      for(var i = 0; i < $scope.finalContactArray.length; i++) {
@@ -121,6 +133,7 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
           }
         
      	$scope.addAddress = function(){
+            $scope.addressform.submitted = true;
          if($scope.address.Street1 && $scope.address.Street2 && $scope.address.Zip && $scope.address.PhoneNumber){
      		var address = {};
      		angular.copy($scope.address,address);
@@ -134,11 +147,13 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             if(addrToReplace){
                 $scope.finalAddressArray[addrToReplace.addrIndex] = address;
                 $("#addAddressModal").modal("hide");
+                $scope.addressform.submitted = false;
                 alert("Address updated");
             }
             else{
      		 $scope.finalAddressArray.push(address);
                 $("#addAddressModal").modal("hide");
+                $scope.addressform.submitted = false;
                 alert("Address added");
             }
             //$scope.finalAddressArray.push(address);
@@ -174,7 +189,11 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
      				PhoneNumber : $scope.finalAddressArray[addrIndex].PhoneNumber
      		}
 	    }
-        
+        $scope.modalClose = function(){
+            $scope.addressform.submitted = false;
+            $scope.address ={};
+            $scope.addressform.$setPristine(true);
+        }
         //add contacts functions
         $scope.addcontacts = function(){
             $scope.contact.ClientId = clientDataToedit.ClientId;
@@ -238,6 +257,10 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             var imgReader = new FormData();
             var file = imgReader.get('file');
             var reader = new FileReader();
+            if (!files[0].type.match('image.*')) {
+                alert("Logo must be an image");
+            }
+            else{
              imgReader.append('file', files[0]);
              //imgReader.append('CompanyId', 428);
              $scope.companyLogo = imgReader;
@@ -246,10 +269,10 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
 //             //$scope.CompanyLogo = e.target.result;
                angular.element(document.querySelector('.img-to-upload')).removeClass('display-none');
                angular.element(document.querySelector('#imagePreview')).attr('src',e.target.result);    
-               angular.element(document.querySelector('#uploadedImg')).addClass('animated-img-div');
-            }
+               angular.element(document.querySelector('#uploadedImg')).addClass('display-none');
+                }
             angular.element(document.querySelector('#uploadLogo'))[0].value="";
-             
+            } 
         }
       // remove image
         $scope.removeUploadedImg = function() {
@@ -257,8 +280,9 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             clientPostDataService.removeLogo(clientId).then(function (response) {
                          if (response.data){
                              alert("Company logo removed");
-                             $scope.companyLogo ='';
+                             
                                  }
+                            $scope.companyLogo ='';
                             }, function (response) {
                                     alert(response.data.Messages[0]) ; 
 
@@ -269,8 +293,14 @@ clientsApp.controller('createClientController' ,['$scope' , 'clientPostDataServi
             angular.element(document.querySelector('#imagePreview')).attr('src','');
             angular.element(document.querySelector('.img-to-upload')).addClass('display-none')
             angular.element(document.querySelector('#uploadedImg')).removeClass('animated-img-div');
-            $scope.companyLogo = clientDataToedit.CompanyLogo;
-            
+            var uploadedImgEle = angular.element(document.querySelector('#uploadedImg'));
+            angular.element(document.querySelector('#uploadedImg')).removeClass('display-none');
+            if(uploadedImgEle){
+               $scope.companyLogo = clientDataToedit.CompanyLogo; 
+            }
+            else{
+              $scope.companyLogo = '';  
+            }   
         }
 }
 ]);
