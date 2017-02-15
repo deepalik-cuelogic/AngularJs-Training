@@ -1,30 +1,19 @@
 <div class="client-data">
-        	<ol class="breadcrumb custom-breadcrumb">
-			  <li><a ui-sref="home">Home</a></li>
-			  <li><a ui-sref="clients.active">Clients</a></li>
-			</ol>
-        	<div class="panel panel-default">
-				  <div class="panel-body">
-
-				    <ul class="nav nav-tabs"> 
-				       <li ui-sref-active="active" class="active"><a ui-sref="clients.active" data-toggle="tab">Active</a></li> 
-				       <li ui-sref-active="active" class="active"><a ui-sref="clients.archive" data-toggle="tab">Archived</a></li> 
-				    	<input ui-sref="createClient" type="button" class="btn btn-success float-right" value="Create Client" />
-				    </ul>
-				    <div class="tab-content clearfix">
-<!--
-                        <div class="searchBox">
-                          <div class="container-1">
-                              <span class="icon"><span class="glyphicon glyphicon-search"></span></span>
-                              <input type="search" id="search" ng-model="searchString" placeholder="Search for client name"/>
-                          </div>
-                        </div>
--->
-			  			<!--Content loads here-->
-			         	 <div ui-view></div>
-			         	<!--Content load here-->
-			  			
-			  		</div>
-				  </div>
-			</div>
-         </div>
+    <ol class="breadcrumb custom-breadcrumb">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="clients.active">Clients</a></li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active" class="active"><a ui-sref="clients.active" data-toggle="tab">Active</a></li>
+                <li ui-sref-active="active" class="active"><a ui-sref="clients.archive" data-toggle="tab">Archived</a></li>
+                <input ui-sref="createClient" type="button" class="btn btn-success float-right" value="Create Client" /> </ul>
+            <div class="tab-content clearfix">
+                <!--Content loads here-->
+                <div ui-view></div>
+                <!--Content load here-->
+            </div>
+        </div>
+    </div>
+</div>

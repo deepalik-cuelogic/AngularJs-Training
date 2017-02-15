@@ -3,31 +3,31 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
 </div>
 <div class="modal-body">
-     <div><a href="#">{{item.ClientName}}</a></div>
-     <div><a href="#">{{item.CountryId}}</a></div>
-     <div>
-         <h5>Address</h5>
+    <div><a href="#">{{item.ClientName}}</a></div>
+    <div><a href="#">{{item.CountryId}}</a></div>
+    <div>
+        <h5>Address</h5>
         <div class="modal-scrollbar">
-            <div class="address-div" ng-repeat ="addrs in item.Addresses">
-                    <address>
+            <div class="address-div" ng-repeat="addrs in item.Addresses"> 
+                <address>
                       <span> {{addrs.Street1}} </span>,<span> {{addrs.Street2}} </span><br>
                       <span> {{addrs.City}} </span>,<span> {{addrs.State}} </span><br>
                       <span> {{addrs.CountryId}} </span><span> {{addrs.Zip}} </span><br>
-                        <abbr title="Phone">Phone: {{addrs.PhoneNumber}} </abbr>
-                    </address>
+                      <abbr title="Phone">Phone: {{addrs.PhoneNumber}} </abbr>
+                </address> 
             </div>
         </div>
     </div>
     <div>
-         <h5>Contacts</h5>
+        <h5>Contacts</h5>
         <div class="modal-scrollbar">
-         <div class="address-div" ng-repeat ="contacts in item.Contacts">
-                    <address>
-                      <span> {{contacts.FirstName}} </span><span> {{contacts.LastName}} </span><br>
-                      <span> {{contacts.EmailAddress}} </span><br><span> {{contacts.DesignationId}} </span><br>
-                        <abbr title="Phone">Phone: {{contacts.ContactNumber}} </abbr>
-                    </address>
+            <div class="address-div" ng-repeat="contacts in item.Contacts"> 
+                <address>
+                    <span> {{contacts.FirstName}} </span><span> {{contacts.LastName}} </span><br>
+                    <span> {{contacts.EmailAddress}} </span><br><span> {{contacts.DesignationId}} </span><br>
+                    <abbr title="Phone">Phone: {{contacts.ContactNumber}} </abbr>
+                </address>
+            </div>
         </div>
-       </div>
     </div>
 </div>

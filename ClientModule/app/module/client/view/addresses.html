@@ -1,12 +1,12 @@
-<div class="address-div" ng-repeat="addrs in finalAddressArray" data-id="{{addrs.addressId}}">
-                    <address>
-                      <span> {{addrs.Street1}} </span>,<span> {{addrs.Street2}} </span><br>
-                      <span> {{addrs.City}} </span>,<span> {{addrs.State}} </span><br>
-                      <span> {{addrs.CountryId}} </span><span> {{addrs.Zip}} </span><br>
-                        <abbr title="Phone">Phone: {{addrs.PhoneNumber}} </abbr>
-                    </address>
-                    <span class="address-icons">
-                     <a href="#" title="remove" ng-click="removeAddress($index)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                     <a href="#" title="edit" ng-click="editAddress($index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                </span>
+<div class="address-div" ng-repeat="addrs in finalAddressArray" data-id="{{addrs.addressId}}"> 
+    <address>
+       <span> {{addrs.Street1}} </span>,<span> {{addrs.Street2}} </span><br>
+       <span> {{addrs.City}} </span>,<span> {{addrs.State}} </span><br>
+       <span> {{addrs.CountryId}} </span><span> {{addrs.Zip}} </span><br>
+       <abbr title="Phone">Phone: {{addrs.PhoneNumber}} </abbr>
+    </address> 
+    <span class="address-icons">
+            <a href="#" title="remove" ng-click="removeAddress($index)"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <a href="#" title="edit" ng-click="editAddress($index)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    </span>
 </div>

@@ -1,64 +1,61 @@
 <div class="tab-pane fade in" id="contactsTab">
     <p id="commonMsg" class="alert alert-success custom-alert" style="display:none">updated</p>
-			  			  <form id="contactForm" class="custom-form" name="contactform"  novalidate>
-			  			    <div class="row">
-			  			     <div class="col-sm-6">
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="firstName">First Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="firstName" ng-model="contact.FirstName" name="firstName" required ng-class="{'submitted': submitted}">
-                                        <span class="color-red" ng-show="submitted && contactform.firstName.$error.required">First name is required.</span>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="lastName">Last Name</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="lastName" ng-model="contact.LastName" name="lastName" required ng-class="{'submitted': submitted}">
-                                        <span class="color-red" ng-show="submitted && contactform.lastName.$error.required">Last name is required.</span>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="email">Email</label>
-								   	<div class="col-sm-8">
-								    	<input type="email" class="form-control" id="email" ng-model="contact.EmailAddress" name="email" required ng-class="{'submitted': submitted}">
-                                        <span class="color-red" ng-show="submitted && contactform.email.$error.required">Email name is required.</span>
-                                         <span class="color-red" ng-show="contactform.email.$error.email">Invalid email address.</span>
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="contactNo">Contact Number</label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" id="contactNo" ng-model="contact.ContactNumber" valid-number  maxlength="15">
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4 required-field" for="designation">Designation</label>
-								    <div class="col-sm-8">
-								      <select class="form-control" id="designation" ng-model="contact.OtherDesignation" name="designation" required ng-class="{'submitted': submitted}">
-										    <option value="1">Technical</option>
-										    <option value="2">Report Delivery</option>
-										    <option value="3">Financial</option>
-										    <option value="4">Other</option>
-									  </select>
-                                        <span class="color-red" ng-show="submitted && contactform.designation.$error.required">Designation name is required.</span>
-									 </div>
-								  </div>
-								  <div class="form-group col-sm-12">
-								    <label class="col-sm-4" for="contactNo">Primary Contact Person</label>
-								   	<div class="col-sm-8">
-								    	<input type="checkbox" id="contactcheck" ng-model="contact.IsPrimaryContact"><br>
-                                        <br />
-								    	<input id="addContact" type="submit" class="btn btn-success" name="addContacts" ng-click="submitted= true; postContacts()" value="Add Contact">
-								   	</div>
-								  </div>
-								  <div>
-								  </div>
-							 </div>
-							 <div class="col-sm-6">
-							 		<div id="addedContacts" class="scrollbar">
-                                        <add-contact></add-contact>
-								    </div>
-							 </div>
-							</div>
-							</form>
-			  			</div>
+    <form id="contactForm" class="custom-form" name="contactform" novalidate>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4 required-field" for="firstName">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstName" ng-model="contact.FirstName" name="firstName" required ng-class="{'submitted': submitted}"> 
+                        <span class="color-red" ng-show="submitted && contactform.firstName.$error.required">First name is required.</span> 
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4 required-field" for="lastName">Last Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastName" ng-model="contact.LastName" name="lastName" required ng-class="{'submitted': submitted}"> 
+                        <span class="color-red" ng-show="submitted && contactform.lastName.$error.required">Last name is required.</span> 
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4 required-field" for="email">Email</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" id="email" ng-model="contact.EmailAddress" name="email" required ng-class="{'submitted': submitted}"> 
+                        <span class="color-red" ng-show="submitted && contactform.email.$error.required">Email name is required.</span> <span class="color-red" ng-show="contactform.email.$error.email">Invalid email address.</span> 
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4" for="contactNo">Contact Number</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="contactNo" ng-model="contact.ContactNumber" valid-number maxlength="15"> 
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4 required-field" for="designation">Designation</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="designation" ng-model="contact.OtherDesignation" name="designation" required ng-class="{'submitted': submitted}">
+                            <option value="1">Technical</option>
+                            <option value="2">Report Delivery</option>
+                            <option value="3">Financial</option>
+                            <option value="4">Other</option>
+                        </select> 
+                        <span class="color-red" ng-show="submitted && contactform.designation.$error.required">Designation name is required.</span> 
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-4" for="contactNo">Primary Contact Person</label>
+                    <div class="col-sm-8">
+                        <input type="checkbox" id="contactcheck" ng-model="contact.IsPrimaryContact">
+                        <br><br>
+                        <input id="addContact" type="submit" class="btn btn-success" name="addContacts" ng-click="submitted= true; postContacts()" value="Add Contact"> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="addedContacts" class="scrollbar">
+                    <p add-contact></p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

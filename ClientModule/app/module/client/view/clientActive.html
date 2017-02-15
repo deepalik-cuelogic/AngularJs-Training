@@ -1,30 +1,32 @@
 <div class="tab-pane fade in active" id="activeTab">
-                       <div class="searchBox">
-                          <div class="container-1">
-                              <span class="icon"><span class="glyphicon glyphicon-search"></span></span>
-                              <input type="search" id="search" ng-model="searchString" placeholder="Search for client name"/>
-                          </div>
-                        </div>
-			  				<table class="table custom-table">
-			  					<thead>
-			  						<th>Client Name</th>
-			  						<th>Email</th>
-			  						<th>Contact</th>
-			  						<th>Actions</th>
-			  					</thead>
-			  					<tbody>
-			  						<tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize |searchFor : searchString| limitTo:pageSize ">
-			  							<td class="custom-ellipsis"><a href="#" ng-click="editClientData($index)">{{activedata.ClientName}}</a></td>
-			  							<td class="custom-ellipsis">
-                                            <a href="#" ng-if="activedata.Contacts[0].EmailAddress">{{activedata.Contacts[0].EmailAddress}}</a>
-                                            <a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="!activedata.Contacts[0].EmailAddress">Add Contact</a>
-                                        </td>
-			  							<td><a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="activedata.Contacts.length >0 ? true : false">Edit Contact</a>
-                                        <a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="activedata.Contacts.length >0 ? false : true">Add Contact</a></td>
-			  							<td><a href="#" ng-click="editClientData(activedata.ClientId)">Edit</a> &nbsp;/&nbsp; 
-                                            <a href="#" ng-click="showDetails(activedata.ClientId)">View</a> &nbsp;/&nbsp; <a href="#" ng-click="archiveClient(activedata.ClientId)">Archive</a></td>
-			  						</tr>
-			  					</tbody>
-							</table>
-							<pagination page="currentPage" max-size="noOfPages" total-items="totalData" items-per-page="pageSize"></pagination>
-			  			</div>
+    <div class="searchBox">
+        <div class="container-1"> <span class="icon"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="search" id="search" ng-model="searchString" placeholder="Search for client name" /> </div>
+    </div>
+    <table class="table custom-table">
+        <thead>
+            <th>Client Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="activedata in dataArray | pageStartFrom:(currentPage-1)*pageSize |searchFor : searchString| limitTo:pageSize ">
+                <td class="custom-ellipsis"><a href="#" ng-click="editClientData($index)">{{activedata.ClientName}}</a></td>
+                <td class="custom-ellipsis"> 
+                    <a href="#" ng-if="activedata.Contacts[0].EmailAddress">{{activedata.Contacts[0].EmailAddress}}</a> 
+                    <a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="!activedata.Contacts[0].EmailAddress">Add Contact</a> </td>
+                <td>
+                    <a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="activedata.Contacts.length >0 ? true : false">Edit Contact</a> 
+                    <a href="#" ng-click="editClientContact(activedata.ClientId)" ng-if="activedata.Contacts.length >0 ? false : true">Add Contact</a>
+                </td>
+                <td>
+                    <a href="#" ng-click="editClientData(activedata.ClientId)">Edit</a> &nbsp;/&nbsp;
+                    <a href="#" ng-click="showDetails(activedata.ClientId)">View</a> &nbsp;/&nbsp;
+                    <a href="#" ng-click="archiveClient(activedata.ClientId)">Archive</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination page="currentPage" max-size="noOfPages" total-items="totalData" items-per-page="pageSize"></pagination>
+</div>

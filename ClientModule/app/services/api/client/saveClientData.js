@@ -1,5 +1,5 @@
-clientsApp.factory('saveClientData', ['$rootScope',  
-    function($rootScope) {
+clientsApp.factory('saveClientData', ['$rootScope'
+    , function ($rootScope) {
         function saveStateData() {
             sessionStorage.saveClientData = angular.toJson(service.state);
         }

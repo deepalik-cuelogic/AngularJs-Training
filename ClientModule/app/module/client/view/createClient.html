@@ -1,106 +1,25 @@
 <div class="create-client">
-        	<ol class="breadcrumb custom-breadcrumb">
-			  <li><a ui-sref="home">Home</a></li>
-			  <li><a ui-sref="clients">Clients</a></li>
-			  <li><a href="#">Create</a></li>
-			</ol>
-        	<div class="panel panel-default">
-				  <div class="panel-body">
-                    <p id="success-msg" class="alert alert-success custom-success display-none">Client created Successfully..</p>
-				    <ul class="nav nav-tabs"> 
-				    	<li ui-sref-active="active" class="active"><a ui-sref="createClient.info" data-toggle="tab">Info</a></li> 
-				    	<li ui-sref-active="active" class="active" id="contactTabli"><a ui-sref="createClient.contact" data-toggle="tab">Contacts</a></li>
-<!--
-                        <li class="active"><a href="#infoTab" data-toggle="tab">Info</a></li> 
-                        <li><a href="#contactsTab" data-toggle="tab">Contact</a></li> 
--->
-				    </ul>
-				    <div class="tab-content clearfix">
-			             <!--Content loads here-->
-			         	   <div ui-view></div>
-			         	 <!--Content load here-->
-                        
-			  		</div>
-				  </div>
-			</div>
-         </div>
-
- <!-- Modal to add address -->
-<!--
-    <div id="addAddressModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                     <form class="custom-form" novalidate>
-			  			    <div class="row">
-								  <div class="col-sm-6 form-group">
-								    <label class="col-sm-4" for="street1">Street1 </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Street1">
-								   	</div>
-								</div>
-								  <div class="col-sm-6 form-group">
-								    <label class="col-sm-4" for="street2">Street2 </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Street2">
-								   	</div>
-								  </div>
-							</div>
-							<div class="row">
-								  <div class="form-group col-sm-6">
-								    <label class="col-sm-4" for="city">City </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.City">
-								   	</div>
-								  </div>
-								  <div class="form-group col-sm-6">
-								    <label class="col-sm-4" for="state">State </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.State">
-								   	</div>
-								  </div>
-							</div>
-							<div class="row">
-								  <div class="form-group col-sm-6">
-								    <label class="col-sm-4" for="country">Country </label>
-								   	<div class="col-sm-8">
-								    	<select class="form-control"  convert-to-number>
-										    <option value="1">USA</option>
-										    <option value="2">India</option>
-										    <option value="3">UK</option>
-										    <option value="4">UAE</option>
-									   </select>
-								   	</div>
-								  </div>
-								  <div class="col-sm-6 form-group">
-								    <label class="col-sm-4" for="zipcode">Zip </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.Zip">
-								   	</div>
-								  </div>
-							</div>
-							<div class="row">
-			  			     	<div class="col-sm-6">
-								  <div class="form-group">
-								    <label class="col-sm-4" for="phoneNumber">Phone Number </label>
-								   	<div class="col-sm-8">
-								    	<input type="text" class="form-control" ng-model="address.PhoneNumber">
-								   	</div>
-								  </div>
-								</div>
-						    </div>
-						</form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addAddress()">Add</button>
-                </div>
+    <ol class="breadcrumb custom-breadcrumb">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a ui-sref="clients">Clients</a></li>
+        <li><a href="#">Create</a></li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p id="success-msg" class="alert alert-success custom-success display-none">Client created Successfully..</p>
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active" class="active"> 
+                    <a ui-sref="createClient.info" data-toggle="tab">Info</a> 
+                </li>
+                <li ui-sref-active="active" class="active" id="contactTabli"> 
+                    <a ui-sref="createClient.contact" data-toggle="tab">Contacts</a> 
+                </li>
+            </ul>
+            <div class="tab-content clearfix">
+                <!--Content loads here-->
+                <div ui-view></div>
+                <!--Content load here-->
             </div>
         </div>
     </div>
--->
-
-
+</div>
