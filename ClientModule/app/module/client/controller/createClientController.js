@@ -1,5 +1,5 @@
-clientsApp.controller('createClientController', ['$scope', 'clientPostDataService', '$stateParams', '$state', '$timeout'
-     , function createClientController($scope, clientPostDataService, $stateParams, $state, $timeout) {
+clientsApp.controller('createClientController', ['$scope', 'clientPostDataService', '$stateParams', '$state', '$timeout' ,'$modal'
+     , function createClientController($scope, clientPostDataService, $stateParams, $state, $timeout ,$modal) {
         // all variable declaration
         $scope.finalAddressArray = [];
         $scope.address = {
@@ -33,7 +33,7 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
             , countryId: ''
             , Addresses: $scope.finalAddressArray
         }
-        $scope.allowStringAndNumber = /^[a-zA-Z0-9_@.]+$/
+        $scope.allowStringAndNumber = /^[a-zA-Z0-9_ @.]+$/
         var myEl = angular.element(document.querySelector('#contactTabli'));
         myEl.addClass('display-none');
         if (clientDataToedit) { //if true then edit page
@@ -70,11 +70,11 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                             $scope.companyLogo.append('CompanyId', response.data.Data.ClientId);
                             clientPostDataService.uploadLogo($scope.companyLogo);
                         }
-                        alert(response.data.Status.Messages[0]);
+                        $scope.showMessage("success" , response.data.Status.Messages[0]);
                         $state.go('clients');
                     }
                 }, function (response) {
-                    alert(response.data.Messages[0]);
+                    $scope.showMessage("error" , response.data.Messages[0]);
                 })
             }
         }
@@ -97,12 +97,12 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                                     break;
                                 }
                             }
-                            alert("Contact updated");
+                            $scope.showMessage("success" , "Contact updated");
                         }
                         else {
                             contact.ContactId = response.data.Data.ContactId;
                             $scope.finalContactArray.push(contact);
-                            alert("Contact created");
+                            $scope.showMessage("success" , "Contact created");
                             $scope.contactform.$setPristine();
                             $scope.contactform.$setUntouched();
                         }
@@ -115,7 +115,7 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                         });
                     }
                 }, function (response) {
-                    alert(response.data.Messages[0]);
+                    $scope.showMessage("error" , response.data.Messages[0]);
                 })
             }
         }
@@ -137,13 +137,13 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                     $scope.finalAddressArray[addrToReplace.addrIndex] = address;
                     $("#addAddressModal").modal("hide");
                     $scope.addressform.submitted = false;
-                    alert("Address updated");
+                    $scope.showMessage("success" , "Address updated");
                 }
                 else {
                     $scope.finalAddressArray.push(address);
                     $("#addAddressModal").modal("hide");
                     $scope.addressform.submitted = false;
-                    alert("Address added");
+                    $scope.showMessage("success" , "Address added");
                 }
                 $scope.address = {
                     AddressId: 0
@@ -160,7 +160,7 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
         }
         $scope.removeAddress = function (addrIndex) {
             $scope.finalAddressArray.splice(addrIndex, 1);
-            alert("Address removed..");
+            $scope.showMessage("success" , "Address removed..");
         }
         $scope.editAddress = function (addrIndex) {
             $scope.finalAddressArray[addrIndex];
@@ -207,10 +207,11 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                     , ContactId: $scope.finalContactArray[contactIndex].ContactId
                 }
                 clientPostDataService.deleteClientContacts(contactToDelete).then(function (response) {
-                    if (response.data) alert("Contact deleted");
-                    $scope.finalContactArray.splice(contactIndex, 1);
+                    if (response.data) 
+                        $scope.showMessage("error" , "Contact deleted");
+                        $scope.finalContactArray.splice(contactIndex, 1);
                 }, function (response) {
-                    alert(response.data.Messages[0]);
+                    $scope.showMessage("error" , response.data.Messages[0] );
                 })
                 contactToDelete = {}
                     //$state.go('createClient.contact'); 
@@ -242,7 +243,7 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                 var file = imgReader.get('file');
                 var reader = new FileReader();
                 if (!files[0].type.match('image.*')) {
-                    alert("Logo must be an image");
+                    $scope.showMessage("success" , "Logo must be an image");
                 }
                 else {
                     imgReader.append('file', files[0]);
@@ -263,11 +264,12 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                 }
                 clientPostDataService.removeLogo(clientId).then(function (response) {
                     if (response.data) {
-                        alert("Company logo removed");
+                        $scope.showMessage("success" , "Company logo removed" );
+                        angular.element(document.querySelector('#uploadedImg')).addClass('display-none');
                     }
                     $scope.companyLogo = '';
                 }, function (response) {
-                    alert(response.data.Messages[0]);
+                    $scope.showMessage("error" , response.data.Messages[0] );
                 });
             }
             // Cancel upload
@@ -284,5 +286,35 @@ clientsApp.controller('createClientController', ['$scope', 'clientPostDataServic
                 $scope.companyLogo = '';
             }
         }
-}
+        
+        
+        //alert Message modal
+        
+        $scope.showMessage = function (mode , message) {
+            $scope.data = message;
+            $scope.mode = mode;
+
+            var modalInstance = $modal.open({
+              templateUrl: 'app/module/client/view/alertMessages.html',
+              controller: 'alertMessagesController',
+              backdrop: true,
+              keyboard: true,
+              backdropClick: true,
+              size: 'lg',
+              resolve: {
+                data: function () {
+                  return $scope.data;
+                }
+              }
+            });
+
+
+            modalInstance.result.then(function (selectedItem) {
+              $scope.selected = selectedItem;
+            }, function () {
+              $log.info('Modal dismissed at: ' + new Date());
+            });
+
+          }
+     }
 ]);

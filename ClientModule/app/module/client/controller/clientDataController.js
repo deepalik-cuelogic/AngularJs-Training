@@ -67,9 +67,9 @@ clientsApp.controller('clientDataController', ['$scope', 'clientData', 'setClien
                             Id: id
                             , Action: $scope.currentActiveTab
                         });
-                        alert("Client Archived");
+                        $scope.showMessage("success" , "Client Archived");
                     }, function (response) {
-                        alert(response.data.Messages[0]);
+                        $scope.showMessage("error" , response.data.Messages[0]);
                     })
                 }
             }
@@ -82,11 +82,40 @@ clientsApp.controller('clientDataController', ['$scope', 'clientData', 'setClien
                     Id: id
                     , Action: $scope.currentActiveTab
                 });
-                alert("Client Activated");
+                $scope.showMessage("error" , "Client Activated");
             }, function (response) {
-                alert(response.data.Messages[0]);
+                $scope.showMessage("error" , response.data.Messages[0]);
             })
         }
+        
+         //alert Message modal
+        
+        $scope.showMessage = function (mode , message) {
+            $scope.data = message;
+            $scope.mode = mode;
+
+            var modalInstance = $modal.open({
+              templateUrl: 'app/module/client/view/alertMessages.html',
+              controller: 'alertMessagesController',
+              backdrop: true,
+              keyboard: true,
+              backdropClick: true,
+              size: 'lg',
+              resolve: {
+                data: function () {
+                  return $scope.data;
+                }
+              }
+            });
+
+
+            modalInstance.result.then(function (selectedItem) {
+              $scope.selected = selectedItem;
+            }, function () {
+              $log.info('Modal dismissed at: ' + new Date());
+            });
+
+          }
    }
 
    ]);

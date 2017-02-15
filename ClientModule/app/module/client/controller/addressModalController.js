@@ -2,7 +2,6 @@ clientsApp.controller('addressModalController', function ($scope, $modalInstance
     $controller('createClientController', {
         $scope: $scope
     });
-    console.log($scope.finalAddressArray);
     $scope.item = item;
     $scope.dismiss = function () {
         $modalInstance.dismiss();
